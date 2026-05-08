@@ -4,10 +4,14 @@ updates:
     directory: /
     schedule:
       interval: weekly
-    open-pull-requests-limit: 5
+    # Keep Dependabot security updates enabled in repository settings, but
+    # pause routine version-update PRs while V1 is still taking shape.
+    open-pull-requests-limit: 0
 
   - package-ecosystem: github-actions
     directory: /
     schedule:
       interval: weekly
-    open-pull-requests-limit: 5
+    # Keep Dependabot security updates enabled in repository settings, but
+    # pause routine version-update PRs while V1 is still taking shape.
+    open-pull-requests-limit: 0
