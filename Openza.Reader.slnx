@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Openza.Reader.Core/Openza.Reader.Core.csproj" />
+    <Project Path="src/Openza.Reader.Tests/Openza.Reader.Tests.csproj" />
+    <Project Path="src/Openza.Reader/Openza.Reader.csproj">
+      <Deploy Solution="Debug|*" />
+    </Project>
+  </Folder>
+</Solution>

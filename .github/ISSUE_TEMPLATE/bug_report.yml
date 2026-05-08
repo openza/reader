@@ -1,0 +1,50 @@
+name: Bug report
+description: Report something that is not working in Openza Reader
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for helping improve Openza Reader.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Describe the issue and what you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open ...
+        2. Click ...
+        3. See ...
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Openza Reader version or commit
+    validations:
+      required: true
+  - type: input
+    id: windows
+    attributes:
+      label: Windows version
+      placeholder: Windows 11 24H2
+    validations:
+      required: true
+  - type: textarea
+    id: markdown
+    attributes:
+      label: Minimal Markdown sample
+      description: Include a small sample if the issue is rendering-related.
+      render: markdown
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs or screenshots
+      description: Add screenshots, logs, or other details if useful.

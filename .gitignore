@@ -1,0 +1,12 @@
+bin/
+obj/
+.vs/
+.vscode/
+.dotnet-cli-home/
+TestResults/
+*.user
+*.suo
+*.nupkg
+AppPackages/
+BundleArtifacts/
+artifacts/
