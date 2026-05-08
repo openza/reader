@@ -10,3 +10,6 @@ TestResults/
 AppPackages/
 BundleArtifacts/
 artifacts/
+node_modules/
+website/dist/
+website/.astro/

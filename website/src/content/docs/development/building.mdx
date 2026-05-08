@@ -1,0 +1,44 @@
+---
+title: Building from Source
+description: Build and test Openza Reader from source
+---
+
+# Building From Source
+
+## Prerequisites
+
+- Windows 10 22H2 or later, or Windows 11
+- .NET 10 SDK
+- Visual Studio 2026 Community or later with WinUI application development tools
+- Windows App SDK 2.0.x workload
+
+Install the WinUI development workload:
+
+```powershell
+winget configure -f https://aka.ms/winui-config
+```
+
+## Commands
+
+Run from the repository root:
+
+```powershell
+dotnet restore src/Openza.Reader.Tests/Openza.Reader.Tests.csproj
+dotnet test src/Openza.Reader.Tests/Openza.Reader.Tests.csproj -c Release --no-restore
+dotnet build src/Openza.Reader/Openza.Reader.csproj -c Release --no-restore
+```
+
+## Packaged Debugging
+
+For packaged app debugging and MSIX work, open the solution in Visual Studio and enable Deploy in Configuration Manager.
+
+## Docs Site
+
+The docs site lives in `website/`:
+
+```powershell
+cd website
+pnpm install
+pnpm dev
+pnpm build
+```

@@ -1,0 +1,56 @@
+---
+title: Architecture
+description: Understanding the Openza Reader codebase
+---
+
+# Architecture
+
+Openza Reader separates Markdown rendering logic from the WinUI shell.
+
+## Project Structure
+
+```text
+src/
+├── Openza.Reader/              # WinUI 3 packaged app
+│   ├── App.xaml.cs             # App startup and file activation
+│   ├── MainWindow.xaml(.cs)    # Reader window and WebView orchestration
+│   ├── Assets/                 # Reader CSS and local highlighting assets
+│   └── ViewModels/             # Window and TOC view models
+│
+├── Openza.Reader.Core/         # Markdown rendering and policies
+│   ├── Services/
+│   │   ├── MarkdownRenderer.cs
+│   │   ├── HtmlShellBuilder.cs
+│   │   ├── LinkPolicy.cs
+│   │   └── ExternalEditorService.cs
+│   └── Models/
+│
+└── Openza.Reader.Tests/        # Renderer and policy tests
+```
+
+## Rendering Flow
+
+```text
+Markdown file
+  -> Markdig pipeline
+  -> generated HTML body
+  -> app-owned HTML shell
+  -> temporary local HTML document
+  -> WebView2
+```
+
+## Key Technologies
+
+| Area | Technology |
+| --- | --- |
+| Desktop UI | WinUI 3 |
+| Platform | Windows App SDK |
+| Runtime | .NET 10 |
+| Rendering surface | WebView2 |
+| Markdown parsing | Markdig |
+| MVVM helpers | CommunityToolkit.Mvvm |
+| Packaging | MSIX |
+
+## Security Boundary
+
+Markdown input is not trusted. The renderer disables raw HTML, rewrites links through a policy layer, and relies on WebView navigation interception for external navigation behavior.

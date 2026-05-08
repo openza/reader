@@ -1,0 +1,35 @@
+---
+title: Contributing
+description: How to contribute to Openza Reader
+---
+
+# Contributing
+
+Openza Reader is open source and welcomes focused contributions.
+
+## Keep V1 Focused
+
+Please keep contributions aligned with the V1 reader scope:
+
+- Read-only Markdown viewing
+- Safe rendering
+- Native Windows app behavior
+- TOC, search, zoom, reload, copy, and external editor workflows
+
+Editing, tabs, export, Mermaid, math rendering, plugins, sync, accounts, and AI features are out of scope for V1 unless an issue explicitly changes that.
+
+## Before Opening A Pull Request
+
+Run:
+
+```powershell
+dotnet restore src/Openza.Reader.Tests/Openza.Reader.Tests.csproj
+dotnet test src/Openza.Reader.Tests/Openza.Reader.Tests.csproj -c Release --no-restore
+dotnet build src/Openza.Reader/Openza.Reader.csproj -c Release --no-restore
+```
+
+For UI changes, include screenshots or a short screen recording.
+
+## Security
+
+Do not open public issues for suspected vulnerabilities. Follow the reporting process in the repository `SECURITY.md`.

@@ -1,0 +1,36 @@
+---
+title: Openza Reader Documentation
+description: Documentation for Openza Reader - A fast, read-only Markdown reader for Windows
+template: splash
+hero:
+  tagline: Fast, safe Markdown reading for Windows
+  image:
+    file: ../../assets/logo.svg
+  actions:
+    - text: Get Started
+      link: /reader/getting-started/introduction
+      icon: right-arrow
+      variant: primary
+    - text: View on GitHub
+      link: https://github.com/openza/reader
+      icon: external
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## Features
+
+<CardGrid stagger>
+  <Card title="Read-Only by Design" icon="open-book">
+    Open Markdown files quickly without turning the reading surface into an editor.
+  </Card>
+  <Card title="Native Windows App" icon="laptop">
+    Built with WinUI 3, Windows App SDK, WebView2, and MSIX packaging.
+  </Card>
+  <Card title="Safe Rendering" icon="shield">
+    Markdown is treated as untrusted input. Raw HTML is escaped and navigation is intercepted.
+  </Card>
+  <Card title="Reader Controls" icon="magnifier">
+    Use table of contents navigation, search, zoom, reload, copy, and external editor actions.
+  </Card>
+</CardGrid>
