@@ -12,36 +12,38 @@
   <g stroke="#111827" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <path d="M76 60h13l6 6v18H76V60Z" fill="none"/>
     <path d="M89 60v7h6"/>
-    <path d="M161 60a10 10 0 1 0 3 8"/>
-    <path d="M165 58v9h-9"/>
-    <path d="M254 61h22"/>
-    <path d="M254 69h16"/>
-    <path d="M254 77h22"/>
-    <path d="M387 82h20"/>
-    <circle cx="453" cy="70" r="8"/>
-    <path d="M448 70h10"/>
-    <circle cx="552" cy="70" r="8"/>
-    <path d="M547 70h10"/>
-    <path d="M552 65v10"/>
-    <path d="M671 62h12v12h-12z"/>
-    <path d="M664 69h12v12h-12z"/>
-    <path d="M765 61l16 16"/>
-    <path d="M777 61l-16 16"/>
-    <path d="M759 81l18-18 8 8-18 18h-8v-8Z"/>
+    <path d="M154 60a10 10 0 1 0 3 8"/>
+    <path d="M158 58v9h-9"/>
+    <path d="M252 61h24"/>
+    <path d="M252 70h18"/>
+    <path d="M252 79h24"/>
+    <circle cx="438" cy="70" r="8"/>
+    <path d="M433 70h10"/>
+    <circle cx="566" cy="70" r="8"/>
+    <path d="M561 70h10"/>
+    <path d="M566 65v10"/>
+    <path d="M748 62h12v12h-12z"/>
+    <path d="M741 69h12v12h-12z"/>
+    <path d="M861 82l17-17 7 7-17 17h-7v-7Z"/>
+    <path d="M875 65l4-4 10 10-4 4"/>
     <path d="M1040 73h26"/>
     <rect x="1090" y="61" width="18" height="14" rx="1"/>
     <path d="M1132 61l18 18"/>
     <path d="M1150 61l-18 18"/>
   </g>
+  <g stroke="#cbd5df" stroke-width="1">
+    <path d="M398 58v24"/>
+    <path d="M705 58v24"/>
+  </g>
 
-  <g font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="15" fill="#1f2937">
-    <text x="104" y="75">Open</text>
-    <text x="181" y="75">Reload</text>
-    <text x="286" y="75">Contents</text>
-    <text x="474" y="75">Zoom out</text>
-    <text x="574" y="75">Zoom in</text>
-    <text x="692" y="75">Copy</text>
-    <text x="798" y="75">Editor</text>
+  <g font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="15" fill="#1f2937" dominant-baseline="middle">
+    <text x="104" y="70">Open</text>
+    <text x="176" y="70">Reload</text>
+    <text x="292" y="70">Contents</text>
+    <text x="460" y="70">Zoom out</text>
+    <text x="588" y="70">Zoom in</text>
+    <text x="777" y="70">Copy</text>
+    <text x="901" y="70">Editor</text>
   </g>
 
   <rect x="46" y="94" width="260" height="610" fill="#fbfbfa"/>
