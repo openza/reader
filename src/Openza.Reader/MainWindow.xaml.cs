@@ -42,6 +42,8 @@ public sealed partial class MainWindow : Window
         AppLog.Write("MainWindow constructor before InitializeComponent");
         InitializeComponent();
         AppLog.Write("MainWindow InitializeComponent complete");
+        ExtendsContentIntoTitleBar = true;
+        SetTitleBar(AppTitleBar);
 
         try
         {
@@ -84,9 +86,15 @@ public sealed partial class MainWindow : Window
         }
 
         _currentFilePath = filePath;
-        Title = $"{Path.GetFileName(filePath)} - Openza Reader";
+        SetWindowTitle($"{Path.GetFileName(filePath)} - Openza Reader");
         await RenderCurrentFileAsync(preserveScroll: false);
         StartWatcher(filePath);
+    }
+
+    private void SetWindowTitle(string title)
+    {
+        Title = title;
+        TitleTextBlock.Text = title;
     }
 
     private async Task EnsureWebViewAsync()

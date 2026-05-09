@@ -12,8 +12,20 @@
     <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
     <RootNamespace>Openza.Reader</RootNamespace>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-    <AppxPackageSigningEnabled>false</AppxPackageSigningEnabled>
     <GenerateAppxPackageOnBuild>false</GenerateAppxPackageOnBuild>
+    <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
+    <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <GenerateTestArtifacts>False</GenerateTestArtifacts>
+    <AppxBundle>Never</AppxBundle>
+    <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <LocalPackageCertificateKeyFile>Openza.Reader_TemporaryKey.pfx</LocalPackageCertificateKeyFile>
+    <AppxPackageSigningEnabled Condition="Exists('$(LocalPackageCertificateKeyFile)')">true</AppxPackageSigningEnabled>
+    <AppxPackageSigningEnabled Condition="!Exists('$(LocalPackageCertificateKeyFile)')">false</AppxPackageSigningEnabled>
+    <PackageCertificateKeyFile Condition="Exists('$(LocalPackageCertificateKeyFile)')">$(LocalPackageCertificateKeyFile)</PackageCertificateKeyFile>
   </PropertyGroup>
 
   <ItemGroup>

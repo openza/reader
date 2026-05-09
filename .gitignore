@@ -7,6 +7,17 @@ TestResults/
 *.user
 *.suo
 *.nupkg
+
+# Local packaging/signing artifacts. Do not commit private signing keys.
+*.pfx
+*.p12
+*.snk
+*.msix
+*.msixbundle
+*.appx
+*.appxbundle
+*.appinstaller
+
 AppPackages/
 BundleArtifacts/
 artifacts/

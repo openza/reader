@@ -1,9 +1,19 @@
 <Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+  </Configurations>
   <Folder Name="/src/">
-    <Project Path="src/Openza.Reader.Core/Openza.Reader.Core.csproj" />
-    <Project Path="src/Openza.Reader.Tests/Openza.Reader.Tests.csproj" />
+    <Project Path="src/Openza.Reader.Core/Openza.Reader.Core.csproj">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
+    <Project Path="src/Openza.Reader.Tests/Openza.Reader.Tests.csproj">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
     <Project Path="src/Openza.Reader/Openza.Reader.csproj">
-      <Deploy Solution="Debug|*" />
+      <Platform Solution="*|x64" Project="x64" />
+      <Deploy Solution="*|x64" />
+      <Deploy Solution="Debug|Any CPU" />
     </Project>
   </Folder>
 </Solution>
