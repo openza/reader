@@ -4,7 +4,7 @@
 
 Openza Reader is a native Markdown reader for Windows, built with WinUI 3, WebView2, and MSIX packaging. It opens `.md` and `.markdown` files from File Explorer, renders them with local assets, and stays focused on a modern Windows reading experience.
 
-> Status: pre-release V1 work. The app is usable for local development, but public installers and winget packages are not published yet.
+> Status: pre-release V1 work. The app is usable for local development. Public distribution is planned through the Microsoft Store first.
 
 Documentation: [openza.github.io/reader](https://openza.github.io/reader)
 
@@ -43,7 +43,7 @@ dotnet test src/Openza.Reader.Tests/Openza.Reader.Tests.csproj -c Release --no-r
 dotnet build src/Openza.Reader/Openza.Reader.csproj -c Release --no-restore
 ```
 
-For packaged app build and MSIX signing, open the solution in Visual Studio and use the packaging tools, or run MSBuild from a Developer PowerShell that has the Windows App SDK workload installed.
+For Store packaging, open the solution in Visual Studio and use **Publish > Create App Packages** with the Microsoft Store flow. See [docs/store-submission.md](docs/store-submission.md) for the submission checklist.
 
 ## Security Posture
 

@@ -1,0 +1,61 @@
+---
+title: Microsoft Store Submission
+description: Store-first release checklist for Openza Reader.
+---
+
+# Microsoft Store Submission
+
+Openza Reader ships publicly through the Microsoft Store first. Store distribution avoids self-signed installer friction because Microsoft signs the submitted MSIX package and handles trusted install/update delivery.
+
+## Owner Steps
+
+These steps require the project owner's Microsoft Partner Center account:
+
+- Create or open a Partner Center developer account.
+- Reserve the app name `Openza Reader`.
+- Associate the Visual Studio project with the reserved Store app.
+- Create a Release x64 package using **Publish > Create App Packages** and the **Microsoft Store** option.
+- Upload the generated `.msixupload` package in Partner Center.
+- Complete Store listing, age rating, pricing, privacy, and support fields.
+- Submit for certification.
+
+## Draft Listing
+
+Short description:
+
+```text
+Native WinUI 3 Markdown reader for Windows.
+```
+
+Support URL:
+
+```text
+https://github.com/openza/reader/issues
+```
+
+Privacy policy URL:
+
+```text
+https://github.com/openza/reader/blob/main/PRIVACY.md
+```
+
+Website:
+
+```text
+https://openza.github.io/reader/
+```
+
+Category:
+
+```text
+Productivity
+```
+
+## Pre-Submission Smoke Test
+
+- Build Release x64 package.
+- Install package locally from Visual Studio.
+- Open the app from Start.
+- Open `.md` and `.markdown` files from File Explorer.
+- Confirm drag and drop, TOC, search, zoom, copy, reload, and external editor actions.
+- Confirm uninstall removes the app cleanly.
