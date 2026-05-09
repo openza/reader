@@ -16,16 +16,18 @@
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
-    <GenerateTestArtifacts>False</GenerateTestArtifacts>
+    <GenerateTestArtifacts>True</GenerateTestArtifacts>
     <AppxBundle>Never</AppxBundle>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
   </PropertyGroup>
 
   <PropertyGroup>
     <LocalPackageCertificateKeyFile>Openza.Reader_TemporaryKey.pfx</LocalPackageCertificateKeyFile>
-    <AppxPackageSigningEnabled Condition="Exists('$(LocalPackageCertificateKeyFile)')">true</AppxPackageSigningEnabled>
-    <AppxPackageSigningEnabled Condition="!Exists('$(LocalPackageCertificateKeyFile)')">false</AppxPackageSigningEnabled>
-    <PackageCertificateKeyFile Condition="Exists('$(LocalPackageCertificateKeyFile)')">$(LocalPackageCertificateKeyFile)</PackageCertificateKeyFile>
+    <LocalPackageSigningEnabled Condition="'$(LocalPackageSigningEnabled)' == ''">false</LocalPackageSigningEnabled>
+    <AppxPackageSigningEnabled Condition="'$(LocalPackageSigningEnabled)' == 'true' and Exists('$(LocalPackageCertificateKeyFile)')">true</AppxPackageSigningEnabled>
+    <AppxPackageSigningEnabled Condition="'$(LocalPackageSigningEnabled)' != 'true' or !Exists('$(LocalPackageCertificateKeyFile)')">false</AppxPackageSigningEnabled>
+    <PackageCertificateKeyFile Condition="'$(LocalPackageSigningEnabled)' == 'true' and Exists('$(LocalPackageCertificateKeyFile)')">$(LocalPackageCertificateKeyFile)</PackageCertificateKeyFile>
+    <GenerateTemporaryStoreCertificate>True</GenerateTemporaryStoreCertificate>
   </PropertyGroup>
 
   <ItemGroup>
