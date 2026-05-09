@@ -10,6 +10,7 @@
     <UseWinUI>true</UseWinUI>
     <EnableMsixTooling>true</EnableMsixTooling>
     <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+    <UseDotNetNativeToolchain>false</UseDotNetNativeToolchain>
     <RootNamespace>Openza.Reader</RootNamespace>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <GenerateAppxPackageOnBuild>false</GenerateAppxPackageOnBuild>
@@ -23,9 +24,10 @@
 
   <PropertyGroup>
     <LocalPackageCertificateKeyFile>Openza.Reader_TemporaryKey.pfx</LocalPackageCertificateKeyFile>
-    <AppxPackageSigningEnabled Condition="Exists('$(LocalPackageCertificateKeyFile)')">true</AppxPackageSigningEnabled>
-    <AppxPackageSigningEnabled Condition="!Exists('$(LocalPackageCertificateKeyFile)')">false</AppxPackageSigningEnabled>
-    <PackageCertificateKeyFile Condition="Exists('$(LocalPackageCertificateKeyFile)')">$(LocalPackageCertificateKeyFile)</PackageCertificateKeyFile>
+    <LocalPackageSigningEnabled Condition="'$(LocalPackageSigningEnabled)' == ''">false</LocalPackageSigningEnabled>
+    <AppxPackageSigningEnabled Condition="'$(LocalPackageSigningEnabled)' == 'true' and Exists('$(LocalPackageCertificateKeyFile)')">true</AppxPackageSigningEnabled>
+    <AppxPackageSigningEnabled Condition="'$(LocalPackageSigningEnabled)' != 'true' or !Exists('$(LocalPackageCertificateKeyFile)')">false</AppxPackageSigningEnabled>
+    <PackageCertificateKeyFile Condition="'$(LocalPackageSigningEnabled)' == 'true' and Exists('$(LocalPackageCertificateKeyFile)')">$(LocalPackageCertificateKeyFile)</PackageCertificateKeyFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -45,4 +47,13 @@
     <Content Include="Assets\*.png" />
     <None Include="Package.appxmanifest" />
   </ItemGroup>
+
+  <Target
+    Name="DisableStoreUploadPackagingForCommandLineBuild"
+    BeforeTargets="_GenerateAppxUploadPackageRecipe;_GenerateAppxUploadPackageFile;_CreateAppStoreContainerForUAP;GenerateUploadMsixPackage"
+    Condition="'$(BuildingInsideVisualStudio)' != 'true' and '$(GenerateAppxPackageOnBuild)' != 'true' and '$(PublishAppxPackage)' != 'true'">
+    <PropertyGroup>
+      <BuildAppxUploadPackageForUap>false</BuildAppxUploadPackageForUap>
+    </PropertyGroup>
+  </Target>
 </Project>
