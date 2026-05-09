@@ -1,0 +1,24 @@
+---
+title: Navigation and Search
+description: TOC, search, zoom, and reload behavior
+---
+
+# Navigation And Search
+
+Openza Reader keeps the main reading surface quiet while exposing the controls needed for larger Markdown files.
+
+## Table Of Contents
+
+The table of contents is generated from document headings. It can be shown or hidden from the toolbar and is intended to stay out of the way on narrow windows.
+
+## Search
+
+Search uses WebView2's native Find API instead of custom page JavaScript.
+
+## Zoom
+
+Zoom controls adjust the rendered document scale, which is useful for presentations, large monitors, and accessibility needs.
+
+## Auto Reload
+
+When the current Markdown file changes, Reader reloads it with a debounce and tries to preserve the approximate scroll position.

@@ -6,6 +6,8 @@ Openza Reader is a fast, read-only Markdown reader for Windows. It opens `.md` a
 
 > Status: pre-release V1 work. The app is usable for local development, but public installers and winget packages are not published yet.
 
+Documentation: [openza.github.io/reader](https://openza.github.io/reader)
+
 ## V1 Scope
 
 - Open Markdown files by double-click, drag and drop, or file picker

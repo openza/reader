@@ -1,0 +1,10 @@
+<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="24" cy="24" r="20" fill="#1e293b"/>
+  <circle cx="24" cy="24" r="16" fill="white"/>
+  <circle cx="24" cy="24" r="12" fill="#475569"/>
+  <!-- Markdown symbol -->
+  <g transform="translate(3.6 4.8) scale(0.8)" fill="white">
+    <path d="M14 30V18h3.2l4.4 5.3L26 18h3.2v12h-3.8v-6.1l-2.3 2.7c-.7.9-2.1.9-2.8 0L18 23.9V30h-4Z"/>
+    <path d="M33 18h3.5v6.8H39L34.8 30l-4.2-5.2H33V18Z"/>
+  </g>
+</svg>

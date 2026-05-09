@@ -8,12 +8,37 @@
     Title="Openza Reader">
     <Grid AllowDrop="True" DragOver="OnDragOver" Drop="OnDrop">
         <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <CommandBar
+        <Grid
+            x:Name="AppTitleBar"
             Grid.Row="0"
+            Background="{ThemeResource LayerFillColorDefaultBrush}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="160" />
+            </Grid.ColumnDefinitions>
+            <Image
+                Width="20"
+                Height="20"
+                Margin="16,0,10,0"
+                VerticalAlignment="Center"
+                Source="Assets/Square44x44Logo.targetsize-32_altform-unplated.png" />
+            <TextBlock
+                x:Name="TitleTextBlock"
+                Grid.Column="1"
+                VerticalAlignment="Center"
+                FontSize="13"
+                Text="Openza Reader"
+                TextTrimming="CharacterEllipsis" />
+        </Grid>
+
+        <CommandBar
+            Grid.Row="1"
             DefaultLabelPosition="Right"
             HorizontalAlignment="Left"
             IsOpen="False">
@@ -28,7 +53,7 @@
             <AppBarButton Icon="Edit" Label="Editor" ToolTipService.ToolTip="Open in external editor" Click="OnOpenExternalClicked" />
         </CommandBar>
 
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition x:Name="TocColumn" Width="0" />
                 <ColumnDefinition Width="*" />
