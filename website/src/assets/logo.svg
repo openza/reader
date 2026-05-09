@@ -1,9 +1,11 @@
-<svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="160" height="160" rx="36" fill="#0D1117"/>
-  <rect x="34" y="24" width="76" height="112" rx="10" fill="#F8FAFC"/>
-  <path d="M50 52H94" stroke="#0F172A" stroke-width="8" stroke-linecap="round"/>
-  <path d="M50 76H92" stroke="#475569" stroke-width="6" stroke-linecap="round"/>
-  <path d="M50 96H82" stroke="#475569" stroke-width="6" stroke-linecap="round"/>
-  <path d="M114 62L133 81L114 100" stroke="#00D9FF" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M105 81H132" stroke="#00D9FF" stroke-width="10" stroke-linecap="round"/>
+<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="24" cy="24" r="20" fill="#1e293b"/>
+  <circle cx="24" cy="24" r="16" fill="white"/>
+  <circle cx="24" cy="24" r="12" fill="#475569"/>
+  <!-- Markdown symbol -->
+  <g fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M15 29V19l4 5 4-5v10"/>
+    <path d="M28 19v10"/>
+    <path d="M25 26l3 3 3-3"/>
+  </g>
 </svg>
