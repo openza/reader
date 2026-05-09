@@ -9,7 +9,7 @@ export default defineConfig({
     sitemap(),
     starlight({
       title: 'Openza Reader',
-      description: 'Documentation for Openza Reader - A fast, read-only Markdown reader for Windows',
+      description: 'Documentation for Openza Reader - A native WinUI 3 Markdown reader for Windows',
       logo: {
         src: './src/assets/logo.svg',
       },

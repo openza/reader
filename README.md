@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/openza/reader/actions/workflows/ci.yml/badge.svg)](https://github.com/openza/reader/actions/workflows/ci.yml)
 
-Openza Reader is a fast, read-only Markdown reader for Windows. It opens `.md` and `.markdown` files from File Explorer, renders them with local assets, and stays focused on reading rather than editing.
+Openza Reader is a native Markdown reader for Windows, built with WinUI 3, WebView2, and MSIX packaging. It opens `.md` and `.markdown` files from File Explorer, renders them with local assets, and stays focused on a modern Windows reading experience.
 
 > Status: pre-release V1 work. The app is usable for local development, but public installers and winget packages are not published yet.
 
