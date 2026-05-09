@@ -14,9 +14,9 @@ The first public release is an MVP:
 
 ## Out Of Scope
 
-- Microsoft Store submission
-- Winget manifest before a stable GitHub Release
-- Code signing certificate automation
+- Winget manifest before the first Microsoft Store release is live
+- Direct-download self-signed installer distribution
+- Paid code signing certificate automation
 - Tabs
 - Editing
 - Export
@@ -25,4 +25,3 @@ The first public release is an MVP:
 - Plugins
 - Sync or accounts
 - AI features
-

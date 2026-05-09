@@ -22,8 +22,10 @@ This checklist should be complete before the first public GitHub push.
 
 ## Release Setup
 
-- Do not publish winget manifests until a stable GitHub Release exists.
-- Configure MSIX signing before publishing installable packages.
+- Publish through the Microsoft Store first; avoid public self-signed installer distribution.
+- Do not publish winget manifests until the first Microsoft Store release is live.
+- Use Store signing for public packages.
+- Keep local test signing certificates ignored and out of git history.
 - Include third-party notices with release artifacts.
 - Smoke test install, launch, file association, and uninstall before public release.
 

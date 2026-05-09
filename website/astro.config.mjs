@@ -44,6 +44,12 @@ export default defineConfig({
             { label: 'Contributing', slug: 'development/contributing' },
           ],
         },
+        {
+          label: 'Release',
+          items: [
+            { label: 'Microsoft Store Submission', slug: 'release/store-submission' },
+          ],
+        },
       ],
     }),
   ],
