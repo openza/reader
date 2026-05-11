@@ -1,8 +1,12 @@
-# Microsoft Store Submission
+# Microsoft Store Release
 
-Openza Reader ships publicly through the Microsoft Store first. Store distribution avoids self-signed installer friction because Microsoft signs the submitted MSIX package and handles trusted install/update delivery.
+Openza Reader is live on the Microsoft Store:
 
-## Required Partner Center Steps
+- https://apps.microsoft.com/detail/9NNPMN0JSSW5?hl=en-us&gl=IN
+
+Store distribution avoids self-signed installer friction because Microsoft signs the submitted MSIX package and handles trusted install/update delivery.
+
+## Partner Center Steps
 
 These steps require the project owner's Microsoft Partner Center account:
 
@@ -13,6 +17,7 @@ These steps require the project owner's Microsoft Partner Center account:
 5. Upload the generated `.msixupload` package in Partner Center.
 6. Complete Store listing, age rating, pricing, privacy, and support fields.
 7. Submit for certification.
+8. After certification completes, verify the public Store listing and install path.
 
 ## Package Notes
 
@@ -23,7 +28,7 @@ These steps require the project owner's Microsoft Partner Center account:
 - Local test signing keys such as `Openza.Reader_TemporaryKey.pfx` must never be committed.
 - Visual Studio association with the Store app will update package identity values assigned by Partner Center.
 
-## Draft Store Listing
+## Store Listing
 
 Short description:
 
@@ -77,7 +82,7 @@ Price:
 Free
 ```
 
-## Pre-Submission Smoke Test
+## Release Smoke Test
 
 - Build Release x64 package.
 - Install package locally from Visual Studio.

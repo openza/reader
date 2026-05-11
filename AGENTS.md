@@ -1,5 +1,7 @@
 # Openza Reader Agent Notes
 
+Also follow the shared Openza guidance in `../AGENTS.md`. Keep this file limited to Reader-specific constraints and commands.
+
 Openza Reader is a Windows-first, read-only Markdown reader.
 
 ## Product Constraints

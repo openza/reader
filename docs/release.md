@@ -12,9 +12,17 @@ The first public release is an MVP:
 - Unit tests pass.
 - Manual smoke tests pass on Windows 10 22H2 and Windows 11.
 
+## Current Distribution
+
+Openza Reader is live on the Microsoft Store:
+
+- https://apps.microsoft.com/detail/9NNPMN0JSSW5?hl=en-us&gl=IN
+
+Microsoft Store remains the trusted public install and update channel for V1.
+
 ## Out Of Scope
 
-- Winget manifest before the first Microsoft Store release is live
+- Direct winget publishing before Store availability has been verified
 - Direct-download self-signed installer distribution
 - Paid code signing certificate automation
 - Tabs

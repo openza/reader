@@ -47,7 +47,7 @@ export default defineConfig({
         {
           label: 'Release',
           items: [
-            { label: 'Microsoft Store Submission', slug: 'release/store-submission' },
+            { label: 'Microsoft Store Release', slug: 'release/store-submission' },
           ],
         },
       ],
