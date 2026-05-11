@@ -1,6 +1,6 @@
 # Open-Source Readiness
 
-This checklist should be complete before the first public GitHub push.
+This checklist tracks the repository's public readiness and release hygiene.
 
 ## Repository Basics
 
@@ -22,8 +22,9 @@ This checklist should be complete before the first public GitHub push.
 
 ## Release Setup
 
-- Publish through the Microsoft Store first; avoid public self-signed installer distribution.
-- Do not publish winget manifests until the first Microsoft Store release is live.
+- Keep the Microsoft Store listing current: https://apps.microsoft.com/detail/9NNPMN0JSSW5?hl=en-us&gl=IN
+- Avoid public self-signed installer distribution.
+- Publish winget manifests only after verifying the live Store listing and package identity.
 - Use Store signing for public packages.
 - Keep local test signing certificates ignored and out of git history.
 - Include third-party notices with release artifacts.

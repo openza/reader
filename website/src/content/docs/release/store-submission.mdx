@@ -1,11 +1,15 @@
 ---
-title: Microsoft Store Submission
-description: Store-first release checklist for Openza Reader.
+title: Microsoft Store Release
+description: Store release and maintenance notes for Openza Reader.
 ---
 
-# Microsoft Store Submission
+# Microsoft Store Release
 
-Openza Reader ships publicly through the Microsoft Store first. Store distribution avoids self-signed installer friction because Microsoft signs the submitted MSIX package and handles trusted install/update delivery.
+Openza Reader is live on the Microsoft Store:
+
+[Install Openza Reader from the Microsoft Store](https://apps.microsoft.com/detail/9NNPMN0JSSW5?hl=en-us&gl=IN)
+
+Store distribution avoids self-signed installer friction because Microsoft signs the submitted MSIX package and handles trusted install/update delivery.
 
 ## Owner Steps
 
@@ -18,8 +22,9 @@ These steps require the project owner's Microsoft Partner Center account:
 - Upload the generated `.msixupload` package in Partner Center.
 - Complete Store listing, age rating, pricing, privacy, and support fields.
 - Submit for certification.
+- After certification completes, verify the public Store listing and install path.
 
-## Draft Listing
+## Store Listing
 
 Short description:
 
@@ -51,7 +56,7 @@ Category:
 Productivity
 ```
 
-## Pre-Submission Smoke Test
+## Release Smoke Test
 
 - Build Release x64 package.
 - Install package locally from Visual Studio.
