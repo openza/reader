@@ -19,6 +19,18 @@ Openza Reader is a Windows-first, read-only Markdown reader.
 - CommunityToolkit.Mvvm
 - MSIX-first packaging
 
+## Project Structure
+- `src/Openza.Reader/` holds the WinUI app, shell, WebView2 host, file activation, and Windows-specific services.
+- `src/Openza.Reader.Core/` holds Markdown rendering, HTML generation, TOC extraction, and security-sensitive content handling.
+- `src/Openza.Reader.Tests/` holds renderer, navigation, and security behavior tests.
+- Keep package outputs, signing material, generated screenshots, and local test files out of git.
+
+## Security And Public Hygiene
+- This is a public open-source repo. Do not commit local Markdown samples with private data, package outputs, certificates, Store-private metadata, logs, or user-specific paths.
+- Markdown is untrusted input. Keep raw HTML disabled in V1 unless the product decision changes with sanitizer tests.
+- Keep renderer security tests close to any Markdown/WebView2 navigation change.
+- Run `gitleaks detect --source . --verbose` before commit-readiness, PRs, or public-release checks.
+
 ## Verification
 - Run `dotnet restore src/Openza.Reader.Tests/Openza.Reader.Tests.csproj`.
 - Run `dotnet test src/Openza.Reader.Tests/Openza.Reader.Tests.csproj -c Release --no-restore`.

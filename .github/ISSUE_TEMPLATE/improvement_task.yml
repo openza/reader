@@ -1,0 +1,64 @@
+name: Improvement or task
+description: Track a scoped improvement, refactor, release task, or documentation task
+title: "[Task]: "
+labels:
+  - type:improvement
+body:
+  - type: textarea
+    id: goal
+    attributes:
+      label: Goal
+      description: What outcome should this issue produce?
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Add decisions, links, constraints, or prior discussion.
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      placeholder: |
+        - [ ] ...
+        - [ ] ...
+    validations:
+      required: true
+  - type: dropdown
+    id: type
+    attributes:
+      label: Work type
+      options:
+        - improvement
+        - tech debt
+        - release
+        - docs
+        - security
+    validations:
+      required: true
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options:
+        - p0 launch/blocker
+        - p1 important
+        - p2 normal
+        - p3 later
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - packaging
+        - markdown rendering
+        - WebView security
+        - file association
+        - UI
+        - performance
+        - store
+        - docs
+        - other
