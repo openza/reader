@@ -117,6 +117,7 @@ public sealed partial class ReaderShell : UserControl
 
         _currentFilePath = filePath;
         HideWorkspace();
+        EmptyState.Visibility = Visibility.Collapsed;
         SetViewMode(_readerSettings.DefaultViewMode);
         SetWindowTitle($"{Path.GetFileName(filePath)} - Openza Reader");
         await RenderCurrentFileAsync(preserveScroll: false);
@@ -192,7 +193,6 @@ public sealed partial class ReaderShell : UserControl
         RawMarkdownTextBox.Text = markdown;
         _viewModel.SetDocument(result);
         TocPane.SetItems(_viewModel.TocItems);
-        EmptyState.Visibility = Visibility.Collapsed;
         UpdateStats(result.Stats);
         SetTocVisible(_viewModel.TocItems.Count > 0 && ActualWidth >= 900 && CanShowToc());
         ApplyViewMode();
