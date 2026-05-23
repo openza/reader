@@ -24,18 +24,23 @@ public sealed class MarkdownRenderer
             .Build();
     }
 
-    public MarkdownRenderResult Render(string markdown, string sourcePath)
+    public MarkdownRenderResult Render(string markdown, string sourcePath, bool allowRemoteImages = true)
     {
         ArgumentNullException.ThrowIfNull(markdown);
         ArgumentException.ThrowIfNullOrWhiteSpace(sourcePath);
 
         var document = Markdown.Parse(markdown, _pipeline);
-        RewriteLinks(document, sourcePath);
+        RewriteLinks(document, sourcePath, allowRemoteImages);
         var tocItems = BuildToc(document);
         var html = RenderDocument(document, _pipeline);
         var title = tocItems.FirstOrDefault()?.Title;
+        var wordCount = DocumentStatsCalculator.CountWords(PlainText(document));
+        var stats = new DocumentStats(
+            wordCount,
+            DocumentStatsCalculator.EstimateReadMinutes(wordCount),
+            tocItems.Count);
 
-        return new MarkdownRenderResult(html, tocItems, title);
+        return new MarkdownRenderResult(html, tocItems, title, stats);
     }
 
     private static string RenderDocument(MarkdownDocument document, MarkdownPipeline pipeline)
@@ -65,7 +70,7 @@ public sealed class MarkdownRenderer
             .ToList();
     }
 
-    private static void RewriteLinks(MarkdownDocument document, string sourcePath)
+    private static void RewriteLinks(MarkdownDocument document, string sourcePath, bool allowRemoteImages)
     {
         var sourceDirectory = Path.GetDirectoryName(sourcePath) ?? Environment.CurrentDirectory;
         foreach (var link in document.Descendants<LinkInline>())
@@ -75,8 +80,23 @@ public sealed class MarkdownRenderer
                 continue;
             }
 
-            link.Url = LinkPolicy.Rewrite(link.Url, sourceDirectory, link.IsImage);
+            link.Url = LinkPolicy.Rewrite(link.Url, sourceDirectory, link.IsImage, allowRemoteImages);
         }
+    }
+
+    private static string PlainText(MarkdownDocument document)
+    {
+        var parts = document
+            .Descendants()
+            .Select(part => part switch
+            {
+                LiteralInline literal => literal.Content.ToString(),
+                CodeInline code => code.Content,
+                LineBreakInline => " ",
+                _ => string.Empty
+            });
+
+        return string.Join(" ", parts).Trim();
     }
 
     private static string PlainText(ContainerInline? inline)

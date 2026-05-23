@@ -14,9 +14,10 @@ Openza Reader renders local Markdown files that may come from downloads, reposit
   - `#heading` anchors stay inside the document.
   - `http`, `https`, and `mailto` open externally.
   - `javascript:`, arbitrary `file:`, and unknown schemes are blocked.
-- Local and remote images are allowed for README compatibility.
+- Local images resolve relative to the opened Markdown file.
+- Remote images are controlled by the user setting and can be blocked for privacy.
+- If WebView2 Runtime is missing or broken, preview rendering cannot start. The app shows a user-facing error with the official WebView2 Runtime install/repair link instead of failing silently.
 
 ## Future HTML Compatibility
 
 If raw HTML support is added later, it must be allowlist-sanitized before entering the WebView. The allowlist should start with README-safe tags such as `details`, `summary`, `kbd`, `br`, `sub`, `sup`, and restricted `img` attributes. It must block scripts, event handlers, forms, iframes, embedded objects, and arbitrary styles.
-

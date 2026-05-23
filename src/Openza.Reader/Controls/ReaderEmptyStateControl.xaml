@@ -1,0 +1,148 @@
+<UserControl
+    x:Class="Openza.Reader.Controls.ReaderEmptyStateControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:models="using:Openza.Reader.Models">
+    <Grid Padding="48,40">
+        <Grid
+            MaxWidth="1180"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            ColumnSpacing="32">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="320" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel
+                MaxWidth="320"
+                Margin="0,72,0,0"
+                HorizontalAlignment="Left"
+                Spacing="12">
+                <TextBlock
+                    Style="{ThemeResource TitleTextBlockStyle}"
+                    Text="Openza Reader" />
+                <TextBlock
+                    Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                    Text="Open a Markdown file to start reading, or continue from a recent document."
+                    TextWrapping="Wrap" />
+                <Button
+                    x:Name="OpenFileButton"
+                    AutomationProperties.AutomationId="EmptyStateOpenFileButton"
+                    HorizontalAlignment="Left"
+                    Click="OnOpenFileClicked"
+                    Style="{StaticResource AccentButtonStyle}">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <FontIcon FontSize="16" Glyph="&#xE8E5;" />
+                        <TextBlock Text="Open file" />
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+
+            <Border
+                Grid.Column="1"
+                Padding="20"
+                Background="{ThemeResource LayerFillColorDefaultBrush}"
+                BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                BorderThickness="1"
+                CornerRadius="{ThemeResource OverlayCornerRadius}">
+                <Grid RowSpacing="12">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid ColumnSpacing="16">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Spacing="2">
+                            <TextBlock
+                                Style="{ThemeResource BodyStrongTextBlockStyle}"
+                                Text="Recent files" />
+                            <TextBlock
+                                x:Name="RecentFilesHintText"
+                                Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                Style="{ThemeResource CaptionTextBlockStyle}"
+                                Text="Pick up where you left off." />
+                        </StackPanel>
+                        <Button
+                            x:Name="ClearRecentFilesButton"
+                            Grid.Column="1"
+                            AutomationProperties.AutomationId="EmptyStateClearRecentFilesButton"
+                            VerticalAlignment="Center"
+                            Click="OnClearRecentFilesClicked"
+                            Content="Clear" />
+                    </Grid>
+
+                    <Grid Grid.Row="1">
+                        <ListView
+                            x:Name="RecentFilesList"
+                            AutomationProperties.AutomationId="RecentFilesList"
+                            IsItemClickEnabled="True"
+                            ItemClick="OnRecentFileClick"
+                            SelectionMode="None"
+                            ShowsScrollingPlaceholders="True">
+                            <ListView.ItemTemplate>
+                                <DataTemplate x:DataType="models:RecentFileItem">
+                                    <Grid
+                                        MinHeight="64"
+                                        Padding="4"
+                                        ColumnSpacing="12">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Border
+                                            Width="36"
+                                            Height="36"
+                                            VerticalAlignment="Center"
+                                            Background="{ThemeResource ControlFillColorSecondaryBrush}"
+                                            CornerRadius="{ThemeResource ControlCornerRadius}">
+                                            <FontIcon
+                                                FontSize="16"
+                                                Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                                Glyph="&#xE7C3;" />
+                                        </Border>
+                                        <StackPanel
+                                            Grid.Column="1"
+                                            VerticalAlignment="Center"
+                                            Spacing="2">
+                                            <TextBlock
+                                                Style="{ThemeResource BodyStrongTextBlockStyle}"
+                                                Text="{x:Bind FileName}"
+                                                TextTrimming="CharacterEllipsis" />
+                                            <TextBlock
+                                                Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                                Style="{ThemeResource CaptionTextBlockStyle}"
+                                                Text="{x:Bind FolderPath}"
+                                                TextTrimming="CharacterEllipsis" />
+                                        </StackPanel>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+                        <StackPanel
+                            x:Name="NoRecentFilesPanel"
+                            Padding="0,16"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Spacing="4">
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                Style="{ThemeResource BodyStrongTextBlockStyle}"
+                                Text="No recent files yet" />
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                Style="{ThemeResource CaptionTextBlockStyle}"
+                                Text="Opened Markdown files will appear here." />
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -32,6 +32,16 @@ Short description:
 Native WinUI 3 Markdown reader for Windows.
 ```
 
+Description:
+
+```text
+Openza Reader is a native Markdown reader for Windows, built with WinUI 3, WebView2, and MSIX packaging.
+
+Open Markdown files from File Explorer, drag and drop documents into the app, reopen recent files, browse headings with a table of contents, search rendered text, adjust zoom, copy selected content, and choose an installed editor from Windows when you need to make changes.
+
+Openza Reader focuses on clean, safe reading. Switch between Preview, Raw, and Side by side read-only modes, choose a reader theme, and control remote image loading from Settings. Markdown is treated as untrusted input, raw HTML is escaped, scripts are blocked by construction, and external navigation is handled through the system browser.
+```
+
 Support URL:
 
 ```text
@@ -56,11 +66,24 @@ Category:
 Productivity
 ```
 
+## Package Notes
+
+- Target: Windows 10 22H2 and Windows 11.
+- Minimum package version: `10.0.19045.0`.
+- Max tested version in the source and generated manifest: `10.0.26100.0`.
+- Architecture: x64 for V1.
+- Runtime: build and package as self-contained for normal user installs; verify on a clean machine without .NET 10 before submission.
+- WebView2: verify the Runtime is present or that Openza Reader shows the WebView2 install/repair prompt if it is missing or broken.
+- Release blockers: GitHub issues #12, #13, #14, and #16 must be verified or explicitly deferred before release.
+
 ## Release Smoke Test
 
 - Build Release x64 package.
 - Install package locally from Visual Studio.
 - Open the app from Start.
 - Open `.md` and `.markdown` files from File Explorer.
-- Confirm drag and drop, TOC, search, zoom, copy, reload, and external editor actions.
+- Confirm drag and drop, TOC, search button, Preview/Raw/Side by side modes, settings persistence, recents, themes, remote image policy, zoom, copy, reload, and external editor actions.
+- Confirm launch on a clean Windows 10 22H2 or Windows 11 machine without .NET 10 installed.
+- Confirm the packaged manifest uses `MinVersion="10.0.19045.0"` and `MaxVersionTested="10.0.26100.0"`.
+- Confirm WebView2 Runtime missing/broken behavior before public submission.
 - Confirm uninstall removes the app cleanly.
