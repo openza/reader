@@ -95,7 +95,14 @@ public sealed partial class ReaderShell : UserControl
             return false;
         }
 
-        var core = ReaderWebView.CoreWebView2 ?? throw new InvalidOperationException("WebView2 failed to initialize.");
+        var core = ReaderWebView.CoreWebView2;
+        if (core is null)
+        {
+            AppLog.Write("WebView2 initialization completed without a CoreWebView2 instance.");
+            ShowWebViewRuntimeUnavailable();
+            return false;
+        }
+
         var settings = core.Settings;
         settings.AreDefaultScriptDialogsEnabled = false;
         settings.AreHostObjectsAllowed = false;

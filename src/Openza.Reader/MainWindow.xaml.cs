@@ -35,17 +35,6 @@ public sealed partial class MainWindow : Window
         TryEnableMica();
         TryMaximizeOnStartup();
 
-        Activated += async (_, _) =>
-        {
-            try
-            {
-                await _shell.EnsureWebViewAsync();
-            }
-            catch (Exception exception)
-            {
-                AppLog.Write(exception);
-            }
-        };
         Closed += (_, _) => _shell.Close();
     }
 
