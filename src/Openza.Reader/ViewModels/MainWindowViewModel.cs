@@ -11,6 +11,8 @@ public sealed partial class MainWindowViewModel : ObservableObject
 
     public ObservableCollection<TocEntryViewModel> TocItems { get; } = [];
 
+    public ObservableCollection<RecentFileItem> RecentFiles { get; } = [];
+
     public void SetDocument(MarkdownRenderResult result)
     {
         Title = result.Title;
@@ -18,6 +20,15 @@ public sealed partial class MainWindowViewModel : ObservableObject
         foreach (var item in result.TocItems)
         {
             TocItems.Add(TocEntryViewModel.FromModel(item));
+        }
+    }
+
+    public void SetRecentFiles(IEnumerable<RecentFileItem> files)
+    {
+        RecentFiles.Clear();
+        foreach (var file in files)
+        {
+            RecentFiles.Add(file);
         }
     }
 }

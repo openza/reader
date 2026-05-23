@@ -2,7 +2,7 @@ name: Bug report
 description: Report something that is not working in Openza Reader
 title: "[Bug]: "
 labels:
-  - bug
+  - type:bug
 body:
   - type: markdown
     attributes:
@@ -48,3 +48,16 @@ body:
     attributes:
       label: Logs or screenshots
       description: Add screenshots, logs, or other details if useful.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - packaging
+        - markdown rendering
+        - WebView security
+        - file association
+        - UI
+        - performance
+        - docs
+        - other

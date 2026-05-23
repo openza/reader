@@ -16,16 +16,20 @@ public sealed class HtmlShellBuilder
         _prismJs = ReadAsset("prism.js");
     }
 
-    public string Build(MarkdownRenderResult result, string documentName)
+    public string Build(MarkdownRenderResult result, string documentName, string readerTheme, bool allowRemoteImages)
     {
         var title = WebUtility.HtmlEncode(result.Title ?? documentName);
+        var theme = WebUtility.HtmlEncode(readerTheme);
+        var imgSrc = allowRemoteImages
+            ? "file: http: https: data:"
+            : "file: data:";
         return $$"""
             <!doctype html>
-            <html lang="en">
+            <html lang="en" data-reader-theme="{{theme}}">
             <head>
               <meta charset="utf-8">
               <meta name="viewport" content="width=device-width, initial-scale=1">
-              <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src file: http: https: data:; style-src 'unsafe-inline'; script-src 'unsafe-inline'; font-src data:; navigate-to 'none';">
+              <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src {{imgSrc}}; style-src 'unsafe-inline'; script-src 'unsafe-inline'; font-src data:; navigate-to 'none';">
               <title>{{title}}</title>
               <style>
               {{_readerCss}}
@@ -53,4 +57,3 @@ public sealed class HtmlShellBuilder
             : string.Empty;
     }
 }
-

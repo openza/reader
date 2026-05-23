@@ -17,8 +17,11 @@ Install: [Microsoft Store](https://apps.microsoft.com/detail/9NNPMN0JSSW5?hl=en-
 - Disable raw HTML in Markdown input
 - Highlight fenced code blocks with bundled Prism-compatible assets
 - Show a table of contents from document headings
-- Search with WebView2's native Find API
-- Zoom, copy selected rendered text, reload, and open in the system editor
+- Search with an explicit toolbar button backed by WebView2's native Find API
+- Switch between Preview, Raw, and Side by side read-only view modes
+- Choose reader theme, remote image policy, and default view mode in Settings
+- Open recent files from the empty state
+- Zoom, copy selected text, reload, and open the current file with an installed Markdown editor through Windows
 - Auto reload changed files with debounce
 - Ship as MSIX with Markdown file associations
 
@@ -29,7 +32,7 @@ Install: [Microsoft Store](https://apps.microsoft.com/detail/9NNPMN0JSSW5?hl=en-
 - .NET 10 SDK
 - Windows App SDK 2.0.x
 
-The development build is configured as Windows App SDK self-contained so `dotnet run` can launch without first registering a machine-wide Windows App Runtime.
+The development build is configured as Windows App SDK self-contained so `dotnet run` can launch without first registering a machine-wide Windows App Runtime. The app manifest and package minimum target Windows 10 22H2 (`10.0.19045.0`), and the app project produces self-contained `win-x64` build output for release validation.
 
 You can install the required WinUI development workload with Microsoft's winget configuration:
 
@@ -49,7 +52,7 @@ For Store packaging, open the solution in Visual Studio and use **Publish > Crea
 
 ## Security Posture
 
-Markdown is rendered as untrusted content. Raw HTML is disabled, WebView2 host objects and web messages are disabled, app navigation is intercepted, and external links are launched through the Windows shell instead of inside the embedded WebView.
+Markdown is rendered as untrusted content. Raw HTML is disabled, WebView2 host objects and web messages are disabled, app navigation is intercepted, and external links are launched through the Windows shell instead of inside the embedded WebView. Remote images can be blocked from Settings.
 
 See [SECURITY.md](SECURITY.md) and [docs/security.md](docs/security.md) for reporting and implementation details.
 

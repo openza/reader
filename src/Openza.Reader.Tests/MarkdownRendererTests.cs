@@ -64,6 +64,14 @@ public sealed class MarkdownRendererTests
     }
 
     [Fact]
+    public void BlocksRemoteImagesWhenConfigured()
+    {
+        var result = _renderer.Render("![alt](https://example.com/logo.png)", TestPath(), allowRemoteImages: false);
+
+        Assert.Contains($"src=\"{LinkPolicy.BlockedLink}\"", result.HtmlBody, StringComparison.OrdinalIgnoreCase);
+    }
+
+    [Fact]
     public void IncludesCodeSpansInHeadingTitles()
     {
         var result = _renderer.Render("## `dotnet test` command", TestPath());
@@ -71,6 +79,22 @@ public sealed class MarkdownRendererTests
         Assert.Single(result.TocItems);
         Assert.Equal("dotnet test command", result.TocItems[0].Title);
         Assert.Equal("dotnet test command", result.Title);
+    }
+
+    [Fact]
+    public void CalculatesDocumentStats()
+    {
+        var result = _renderer.Render("""
+# Title
+
+This document has enough words to produce useful statistics.
+
+## Details
+""", TestPath());
+
+        Assert.True(result.Stats.WordCount >= 10);
+        Assert.Equal(1, result.Stats.EstimatedReadMinutes);
+        Assert.Equal(2, result.Stats.HeadingCount);
     }
 
     private static string TestPath()

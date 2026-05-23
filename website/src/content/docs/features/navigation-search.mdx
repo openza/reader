@@ -7,13 +7,17 @@ description: TOC, search, zoom, and reload behavior
 
 Openza Reader keeps the main reading surface quiet while exposing the controls needed for larger Markdown files.
 
+## View Modes
+
+The toolbar View menu switches between Preview, Raw, and Side by side modes. Preview is the default rendered Markdown view. Raw shows selectable, read-only Markdown text. Side by side shows the raw Markdown and rendered preview in equal panes.
+
 ## Table Of Contents
 
-The table of contents is generated from document headings. It can be shown or hidden from the toolbar and is intended to stay out of the way on narrow windows.
+The table of contents is generated from document headings. It can be shown or hidden from the toolbar in Preview and Side by side modes, and it stays hidden in Raw mode.
 
 ## Search
 
-Search uses WebView2's native Find API instead of custom page JavaScript.
+Search uses WebView2's native Find API instead of custom page JavaScript. The toolbar includes a visible Search button for discoverability, and `Ctrl+F` follows the native WebView2 find flow.
 
 ## Zoom
 
