@@ -90,7 +90,19 @@ public partial class App : Application
 
         if (!string.IsNullOrWhiteSpace(filePath))
         {
-            _ = window.OpenFileAsync(filePath);
+            _ = OpenFileForWindowAsync(window, filePath);
+        }
+    }
+
+    private static async Task OpenFileForWindowAsync(MainWindow window, string filePath)
+    {
+        try
+        {
+            await window.OpenFileAsync(filePath);
+        }
+        catch (Exception exception)
+        {
+            AppLog.Write(exception);
         }
     }
 }
