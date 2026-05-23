@@ -1,6 +1,6 @@
 # Support
 
-Openza Reader is currently pre-release software.
+Openza Reader is a public Microsoft Store app and an open-source Windows Markdown reader.
 
 Use GitHub issues for:
 

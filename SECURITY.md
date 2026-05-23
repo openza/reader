@@ -4,7 +4,12 @@ Openza Reader renders Markdown that may come from untrusted sources. Security re
 
 ## Supported Versions
 
-Openza Reader has not shipped a stable public release yet. Until V1 is released, security fixes are made on the default branch.
+Openza Reader is publicly available through the Microsoft Store. Security fixes are made on the default branch and shipped in the next Store update.
+
+| Version | Supported |
+| --- | --- |
+| 1.1.x | Yes, after the Store update is published |
+| 1.0.x | Yes |
 
 ## Reporting A Vulnerability
 
