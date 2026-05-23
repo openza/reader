@@ -10,6 +10,8 @@ Documentation: [openza.github.io/reader](https://openza.github.io/reader)
 
 Install: [Microsoft Store](https://apps.microsoft.com/detail/9NNPMN0JSSW5?hl=en-us&gl=IN)
 
+Current planned Store release: `1.1.0`.
+
 ## V1 Scope
 
 - Open Markdown files by double-click, drag and drop, or file picker
@@ -49,6 +51,8 @@ dotnet build src/Openza.Reader/Openza.Reader.csproj -c Release --no-restore
 ```
 
 For Store packaging, open the solution in Visual Studio and use **Publish > Create App Packages** with the Microsoft Store flow. See [docs/store-submission.md](docs/store-submission.md) for release and Store maintenance notes.
+
+GitHub Releases record source snapshots and release notes. Microsoft Store remains the trusted public install and update channel.
 
 ## Security Posture
 

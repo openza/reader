@@ -1,5 +1,13 @@
 # Release Notes
 
+## Planned Next Release
+
+Openza Reader `1.1.0` is the next planned Microsoft Store release.
+
+- Release tracking: https://github.com/openza/reader/issues/21
+- Release notes draft: [release-notes/v1.1.0.md](release-notes/v1.1.0.md)
+- GitHub Releases are source snapshots and release notes. Microsoft Store remains the trusted install and update channel.
+
 ## V1 Release Bar
 
 The first public release is an MVP:
@@ -28,7 +36,7 @@ Openza Reader is live on the Microsoft Store:
 
 - https://apps.microsoft.com/detail/9NNPMN0JSSW5?hl=en-us&gl=IN
 
-Microsoft Store remains the trusted public install and update channel for V1.
+Microsoft Store remains the trusted public install and update channel.
 
 ## Runtime And Platform Notes
 

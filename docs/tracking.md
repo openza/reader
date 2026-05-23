@@ -24,6 +24,7 @@ Use milestones for release planning:
 - `v0.2`: next functional release.
 - `v0.3`: follow-up polish and compatibility.
 - `v1.0`: stable public baseline.
+- `v1.1.0`: next Microsoft Store update with reader modes, settings/recents polish, and packaging validation.
 
 ## Project Views
 
