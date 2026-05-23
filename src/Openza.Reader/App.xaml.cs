@@ -13,6 +13,7 @@ public partial class App : Application
     private readonly HtmlShellBuilder _shellBuilder = new();
     private readonly TempHtmlDocumentStore _documentStore = new();
     private readonly ExternalEditorService _externalEditor = new();
+    private readonly AppSettingsService _settings = new();
     private readonly List<MainWindow> _windows = [];
     private readonly DispatcherQueue _dispatcherQueue;
 
@@ -77,7 +78,7 @@ public partial class App : Application
     private void OpenWindow(string? filePath)
     {
         AppLog.Write($"OpenWindow filePath='{filePath ?? "<none>"}'");
-        var window = new MainWindow(_renderer, _shellBuilder, _documentStore, _externalEditor);
+        var window = new MainWindow(_renderer, _shellBuilder, _documentStore, _externalEditor, _settings);
         _windows.Add(window);
         window.Closed += (_, _) =>
         {

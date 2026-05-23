@@ -5,7 +5,7 @@ description: Understanding the Openza Reader codebase
 
 # Architecture
 
-Openza Reader separates Markdown rendering logic from the WinUI shell.
+Openza Reader separates Markdown rendering logic from the WinUI shell. The WinUI app is split into a thin window host, a reader shell, pages, controls, services, models, and view models so the main window does not own the whole app surface.
 
 ## Project Structure
 
@@ -13,8 +13,13 @@ Openza Reader separates Markdown rendering logic from the WinUI shell.
 src/
 ├── Openza.Reader/              # WinUI 3 packaged app
 │   ├── App.xaml.cs             # App startup and file activation
-│   ├── MainWindow.xaml(.cs)    # Reader window and WebView orchestration
+│   ├── MainWindow.xaml(.cs)    # Thin native window host
 │   ├── Assets/                 # Reader CSS and local highlighting assets
+│   ├── Controls/               # Reusable TOC and empty-state controls
+│   ├── Models/                 # App settings and view-mode models
+│   ├── Pages/                  # Settings and About surfaces
+│   ├── Services/               # App settings, recents, and external editor launch
+│   ├── Shell/                  # Reader shell and WebView orchestration
 │   └── ViewModels/             # Window and TOC view models
 │
 ├── Openza.Reader.Core/         # Markdown rendering and policies
@@ -22,7 +27,7 @@ src/
 │   │   ├── MarkdownRenderer.cs
 │   │   ├── HtmlShellBuilder.cs
 │   │   ├── LinkPolicy.cs
-│   │   └── ExternalEditorService.cs
+│   │   └── DocumentStatsCalculator.cs
 │   └── Models/
 │
 └── Openza.Reader.Tests/        # Renderer and policy tests
