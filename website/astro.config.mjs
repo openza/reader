@@ -13,9 +13,13 @@ export default defineConfig({
       logo: {
         src: './src/assets/logo.svg',
       },
-      social: {
-        github: 'https://github.com/openza/reader',
-      },
+      social: [
+        {
+          icon: 'github',
+          label: 'GitHub',
+          href: 'https://github.com/openza/reader',
+        },
+      ],
       customCss: [
         './src/styles/custom.css',
       ],
