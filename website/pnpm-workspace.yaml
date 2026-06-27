@@ -1,6 +1,9 @@
 packages:
   - .
 
+overrides:
+  vite: 7.3.6
+
 allowBuilds:
   esbuild@0.27.7: true
   sharp@0.33.5: true
