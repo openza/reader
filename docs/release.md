@@ -1,11 +1,11 @@
 # Release Notes
 
-## Planned Next Release
+## Current Store Release
 
-Openza Reader `1.1.0` is the next planned Microsoft Store release.
+Openza Reader `1.1.0` is the current Microsoft Store release.
 
 - Release tracking: https://github.com/openza/reader/issues/21
-- Release notes draft: [release-notes/v1.1.0.md](release-notes/v1.1.0.md)
+- Release notes: [release-notes/v1.1.0.md](release-notes/v1.1.0.md)
 - GitHub Releases are source snapshots and release notes. Microsoft Store remains the trusted install and update channel.
 
 ## V1 Release Bar
@@ -44,12 +44,12 @@ Microsoft Store remains the trusted public install and update channel.
 - V1 architecture: x64.
 - The app project is configured for Windows App SDK self-contained deployment and .NET self-contained build output for `win-x64`.
 - The 2026-05-23 Release x64 build output used `includedFrameworks` for `Microsoft.NETCore.App` in `Openza.Reader.runtimeconfig.json` and was about 217 MiB before MSIX packaging.
-- Final package validation must still install on a clean machine or VM without .NET 10.
+- Store package validation should include clean-machine or VM install coverage without a separate .NET 10 prompt before each update.
 - Openza Reader uses WebView2. Windows 11 normally includes the runtime; if WebView2 is absent or broken, the app surfaces a WebView2 Runtime install/repair link.
 
 ## Out Of Scope
 
-- Direct winget publishing before Store availability has been verified
+- Direct winget publishing
 - Direct-download self-signed installer distribution
 - Paid code signing certificate automation
 - Tabs

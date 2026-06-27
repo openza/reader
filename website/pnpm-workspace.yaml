@@ -1,0 +1,4 @@
+allowBuilds:
+  esbuild@0.27.7: true
+  sharp@0.33.5: true
+  sharp@0.34.5: true
