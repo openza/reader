@@ -10,7 +10,7 @@ Documentation: [openza.github.io/reader](https://openza.github.io/reader)
 
 Install: [Microsoft Store](https://apps.microsoft.com/detail/9NNPMN0JSSW5?hl=en-us&gl=IN)
 
-Current planned Store release: `1.1.0`.
+Current Store release: `1.1.0`.
 
 ## V1 Scope
 
