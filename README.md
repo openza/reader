@@ -66,6 +66,6 @@ Contributions are welcome while the project stays focused on the V1 reader scope
 
 ## License
 
-Openza Reader is licensed under the [MIT License](LICENSE).
+The source code and documentation are available under the [MIT License](LICENSE). Openza names, logos, and official app icons are reserved brand assets; see [BRAND.md](BRAND.md).
 
 Third-party dependency and bundled asset notes are listed in [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md).
