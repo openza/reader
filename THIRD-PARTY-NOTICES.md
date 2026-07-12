@@ -17,7 +17,7 @@ Openza Reader depends on third-party packages and platform components. This file
 | --- | --- | --- | --- |
 | xUnit.net | 2.9.3 | Apache-2.0 | Unit testing |
 | xUnit.net Visual Studio runner | 3.1.4 | Apache-2.0 | Test discovery and execution |
-| Microsoft.NET.Test.Sdk | 17.14.1 | Package license metadata | Test SDK |
+| Microsoft.NET.Test.Sdk | 17.14.1 | MIT | Test SDK |
 | coverlet.collector | 6.0.4 | MIT | Test coverage collection |
 
 ## Bundled Reader Assets
@@ -25,3 +25,5 @@ Openza Reader depends on third-party packages and platform components. This file
 The current `src/Openza.Reader/Assets/prism.js` and `src/Openza.Reader/Assets/prism.css` files are small project-owned Prism-compatible highlighting assets, not vendored upstream Prism source.
 
 If upstream Prism assets are bundled later, add the upstream copyright and license notice here in the same pull request.
+
+Project-created screenshots are available under the repository's MIT License. Openza names, logos, and official app icons are reserved as described in [BRAND.md](BRAND.md).
