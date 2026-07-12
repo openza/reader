@@ -73,7 +73,7 @@
 
                 <HyperlinkButton
                     AutomationProperties.AutomationId="AboutDocumentationLink"
-                    NavigateUri="https://openza.github.io/reader/"
+                    NavigateUri="https://solanky.dev/openza/reader/"
                     Style="{StaticResource AboutLinkButtonStyle}">
                     <Grid ColumnSpacing="12">
                         <Grid.ColumnDefinitions>
