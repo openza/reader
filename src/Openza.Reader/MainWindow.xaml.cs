@@ -25,6 +25,9 @@ public sealed partial class MainWindow : Window
     {
         AppLog.Write("MainWindow constructor before InitializeComponent");
         InitializeComponent();
+#if DEBUG
+        Title = "Openza Reader Dev";
+#endif
         AppLog.Write("MainWindow InitializeComponent complete");
 
         _shell = new ReaderShell(this, renderer, shellBuilder, documentStore, externalEditor, settings);

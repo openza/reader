@@ -23,6 +23,7 @@ namespace Openza.Reader.Shell;
 public sealed partial class ReaderShell : UserControl
 {
     private readonly Window _owner;
+    private readonly string _applicationTitle;
     private readonly MarkdownRenderer _renderer;
     private readonly HtmlShellBuilder _shellBuilder;
     private readonly TempHtmlDocumentStore _documentStore;
@@ -49,6 +50,7 @@ public sealed partial class ReaderShell : UserControl
         AppSettingsService settingsService)
     {
         _owner = owner;
+        _applicationTitle = owner.Title;
         _renderer = renderer;
         _shellBuilder = shellBuilder;
         _documentStore = documentStore;
@@ -58,6 +60,7 @@ public sealed partial class ReaderShell : UserControl
         _viewMode = _readerSettings.DefaultViewMode;
 
         InitializeComponent();
+        SetWindowTitle(_applicationTitle);
         TocPane.TocItemInvoked += OnTocItemInvoked;
         EmptyState.OpenFileRequested += OnEmptyStateOpenFileRequested;
         EmptyState.ClearRecentFilesRequested += OnEmptyStateClearRecentFilesRequested;
@@ -126,7 +129,7 @@ public sealed partial class ReaderShell : UserControl
         HideWorkspace();
         EmptyState.Visibility = Visibility.Collapsed;
         SetViewMode(_readerSettings.DefaultViewMode);
-        SetWindowTitle($"{Path.GetFileName(filePath)} - Openza Reader");
+        SetWindowTitle($"{Path.GetFileName(filePath)} - {_applicationTitle}");
         await RenderCurrentFileAsync(preserveScroll: false);
         StartWatcher(filePath);
         _settingsService.AddRecentFile(filePath);

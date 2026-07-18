@@ -46,7 +46,12 @@
     <Content Include="Assets\prism.css" CopyToOutputDirectory="PreserveNewest" />
     <Content Include="Assets\prism.js" CopyToOutputDirectory="PreserveNewest" />
     <Content Include="Assets\*.png" />
-    <None Include="Package.appxmanifest" />
+    <AppxManifest Include="Package.Debug.appxmanifest" Condition="'$(Configuration)' == 'Debug'">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+    <AppxManifest Include="Package.appxmanifest" Condition="'$(Configuration)' != 'Debug'">
+      <SubType>Designer</SubType>
+    </AppxManifest>
   </ItemGroup>
 
   <Target
