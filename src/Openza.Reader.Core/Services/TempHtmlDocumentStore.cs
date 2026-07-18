@@ -7,12 +7,10 @@ public sealed class TempHtmlDocumentStore
 {
     private readonly string _cacheDirectory;
 
-    public TempHtmlDocumentStore()
+    public TempHtmlDocumentStore(string cacheRoot)
     {
-        _cacheDirectory = Path.Combine(
-            Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-            "Openza.Reader",
-            "RenderCache");
+        ArgumentException.ThrowIfNullOrWhiteSpace(cacheRoot);
+        _cacheDirectory = Path.Combine(cacheRoot, "RenderCache");
         Directory.CreateDirectory(_cacheDirectory);
     }
 
@@ -30,4 +28,3 @@ public sealed class TempHtmlDocumentStore
         return Convert.ToHexString(bytes)[..24].ToLowerInvariant();
     }
 }
-

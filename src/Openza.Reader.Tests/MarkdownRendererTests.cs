@@ -97,6 +97,33 @@ This document has enough words to produce useful statistics.
         Assert.Equal(2, result.Stats.HeadingCount);
     }
 
+    [Fact]
+    public async Task WritesRenderedHtmlInsideTheProvidedAppCache()
+    {
+        var cacheRoot = Path.Combine(Path.GetTempPath(), $"openza-reader-test-{Guid.NewGuid():N}");
+
+        try
+        {
+            var store = new TempHtmlDocumentStore(cacheRoot);
+            const string html = "<html><body>Google Drive document</body></html>";
+
+            var uri = await store.WriteAsync(@"G:\My Drive\Obsidian\README.md", html);
+
+            Assert.True(uri.IsFile);
+            Assert.Equal(
+                Path.GetFullPath(Path.Combine(cacheRoot, "RenderCache")),
+                Path.GetDirectoryName(uri.LocalPath));
+            Assert.Equal(html, await File.ReadAllTextAsync(uri.LocalPath));
+        }
+        finally
+        {
+            if (Directory.Exists(cacheRoot))
+            {
+                Directory.Delete(cacheRoot, recursive: true);
+            }
+        }
+    }
+
     private static string TestPath()
     {
         return Path.Combine(Path.GetTempPath(), "openza-reader-test", "README.md");
