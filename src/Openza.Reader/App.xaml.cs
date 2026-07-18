@@ -11,7 +11,8 @@ public partial class App : Application
 {
     private readonly MarkdownRenderer _renderer = new();
     private readonly HtmlShellBuilder _shellBuilder = new();
-    private readonly TempHtmlDocumentStore _documentStore = new();
+    private readonly TempHtmlDocumentStore _documentStore =
+        new(ApplicationData.Current.LocalCacheFolder.Path);
     private readonly ExternalEditorService _externalEditor = new();
     private readonly AppSettingsService _settings = new();
     private readonly List<MainWindow> _windows = [];
