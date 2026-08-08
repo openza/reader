@@ -12,6 +12,8 @@ Install: [Microsoft Store](https://apps.microsoft.com/detail/9NNPMN0JSSW5?hl=en-
 
 Current Store release: `1.1.0`.
 
+Next planned Store update: `1.1.1`.
+
 ## V1 Scope
 
 - Open Markdown files by double-click, drag and drop, or file picker
