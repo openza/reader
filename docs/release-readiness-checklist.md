@@ -1,13 +1,11 @@
 # Openza Reader Release Readiness Checklist
 
-Use this checklist before a public Store update or GitHub release. It separates developer validation from user-install validation so packaging issues are not hidden by a working development machine.
+Use this checklist before a public Store update or GitHub release. It covers automated validation, practical manual smoke testing, and package checks that can be completed by the maintainer.
 
 ## Developer Validation
 
 - Confirm release blockers are closed or explicitly deferred:
-  - [ ] #12: self-contained .NET runtime packaging verified.
   - [ ] #13: Windows minimum version matches project, source manifest, generated package, README, website, and Store copy.
-  - [ ] #14: WebView2 missing-runtime behavior verified and documented.
   - [ ] #16: this checklist is current for the release.
 - Run restore:
 
@@ -55,14 +53,11 @@ gitleaks detect --source . --verbose
 - Verify zoom, copy, reload, auto reload, local images, remote image policy, and link interception.
 - Verify narrow and portrait windows have no clipped labels, title/stat overlap, or broken settings/about layouts.
 
-## User-Install Validation
+## Package Validation
 
 - Create the Release x64 package or Store upload package.
-- Install on a clean supported Windows 10 22H2 machine or clean VM without .NET 10 installed.
-- Confirm the app launches without a separate .NET 10 runtime install prompt.
-- Confirm WebView2 Runtime behavior:
-  - If runtime is present, Markdown preview renders normally.
-  - If runtime is missing or broken, the app shows a clear WebView2 Runtime error with the official install/repair link.
+- Install and launch the package on the maintainer's supported Windows machine.
+- Confirm Markdown preview renders normally.
 - Confirm install, update, and uninstall work cleanly.
 - Confirm Store package signing and identity are correct.
-- Confirm release notes mention runtime/package-size impact and prerequisite behavior.
+- Confirm release notes mention runtime/package-size impact when relevant.

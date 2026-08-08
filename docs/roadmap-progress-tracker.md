@@ -19,7 +19,7 @@ Use this document as the living tracker for the roadmap batches implemented from
 | Batch 2: Preview / Raw / Side-By-Side Modes | Done | View modes are implemented as a compact toolbar View menu instead of the earlier full-width SelectorBar strip. |
 | Batch 3: Settings, About, External Editor, Recents | Done | Desktop in-app settings/about workspaces, Windows editor picker, polished recents, theme/default view/remote image settings are implemented. |
 | Batch 4: Reader Polish From Apostrophe Research | Done | Themes, stats, immersive focus mode with visible exit cue, remote image policy, centered reader toolbar, and improved narrow behavior are implemented. Final High Contrast/narrow manual QA remains before release. |
-| Batch 5: Public And Store Polish | Partial | README, docs, website docs, Store listing copy, release checklist, and critical GitHub release issues are now tracked. Screenshots/assets, clean-machine install validation, and final release hygiene remain. |
+| Batch 5: Public And Store Polish | Partial | README, docs, website docs, Store listing copy, and the release checklist are in place. Screenshots/assets and final release hygiene remain. |
 | Deferred: Tabs | Deferred | Tabs remain out of V1 scope unless product decision changes. |
 
 ## Batch Details
@@ -78,13 +78,10 @@ Status: Partial
 - Done: Store listing text updated in docs.
 - Done: release readiness checklist added in `docs/release-readiness-checklist.md`.
 - Partial: critical GitHub release issues are included in this PR/release gate:
-  - #12: .NET self-contained packaging is configured and build output runtimeconfig now uses `includedFrameworks`; clean-machine install still needs verification.
   - #13: package minimum now aligns with the source manifest/docs at Windows 10 22H2 / `10.0.19045.0`; generated build manifest inspection passed with `MaxVersionTested="10.0.26100.0"`.
-  - #14: WebView2 initialization now shows a user-facing Runtime install/repair link; missing-runtime behavior still needs clean-machine or VM validation.
-  - #16: checklist exists and separates developer validation from user-install validation.
+  - #16: checklist exists and covers developer, smoke-test, and package validation.
 - Pending: regenerate Store/listing screenshots after UI stabilizes.
 - Pending: verify website copy against the actual shipped behavior after final QA.
-- Pending: clean Windows 10 22H2 or Windows 11 VM install test without .NET 10.
 - Done: `gitleaks detect --source . --verbose` passed outside the sandbox after PATH verification.
 
 ## Verification Log
@@ -133,3 +130,4 @@ Append dated notes below.
 - 2026-05-23: Centered the reader toolbar, fixed toolbar label persistence, added Recent command while documents are open, improved Settings/About alignment, and moved Focus into the reader/view command group.
 - 2026-05-23: Added GitHub release blockers #12, #13, #14, and #16 to the release gate; aligned package minimum Windows version to 10.0.19045.0; configured and verified .NET self-contained build output; added WebView2 Runtime unavailable error; added release readiness checklist; passed gitleaks.
 - 2026-05-23: Fixed review findings for focus-mode window restoration, narrow Settings row layout, and Editor launch failure handling; Release build and tests passed.
+- 2026-08-08: Removed clean-machine .NET and missing-WebView2 environment checks from the release process because they are not sustainable for this solo-maintained side project. Local package smoke testing remains in scope.
