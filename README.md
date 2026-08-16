@@ -2,9 +2,14 @@
 
 [![CI](https://github.com/openza/reader/actions/workflows/ci.yml/badge.svg)](https://github.com/openza/reader/actions/workflows/ci.yml)
 
-Openza Reader is a native Markdown reader for Windows, built with WinUI 3, WebView2, and MSIX packaging. It opens `.md` and `.markdown` files from File Explorer, renders them with local assets, and stays focused on a modern Windows reading experience.
+Openza Reader is a read-only Markdown reader. The released Windows app is built with WinUI 3, WebView2, and MSIX packaging. An Avalonia implementation is being evaluated for a first-class Linux experience while reusing the same portable rendering and security core.
 
 > Status: Openza Reader is live on the Microsoft Store. Developers can also build and run it from source.
+
+| App | Status | UI and WebView |
+| --- | --- | --- |
+| `Openza.Reader` | Released Windows app | WinUI 3 and WebView2 |
+| `Openza.Reader.Avalonia` | Linux prototype | Avalonia 12 and the official MIT-licensed Avalonia WebView |
 
 User guide: [solanky.dev/openza/reader](https://solanky.dev/openza/reader/)
 
@@ -44,6 +49,27 @@ You can install the required WinUI development workload with Microsoft's winget 
 winget configure -f https://aka.ms/winui-config
 ```
 
+### Ubuntu prototype
+
+The Avalonia app currently requires the .NET 10 SDK and WebKitGTK 4.1. It has been exercised on Ubuntu 26.04 under GNOME/Wayland. The WebView uses Avalonia's documented WebKitGTK fallback because Ubuntu does not currently provide the WPE WebKit packages named by Avalonia's primary Linux backend documentation.
+
+```bash
+sudo apt update
+sudo apt install dotnet-sdk-10.0 libwebkit2gtk-4.1-0
+```
+
+Build, test, and run it with:
+
+```bash
+dotnet restore src/Openza.Reader.Avalonia/Openza.Reader.Avalonia.csproj
+dotnet restore src/Openza.Reader.Tests/Openza.Reader.Tests.csproj
+dotnet build src/Openza.Reader.Avalonia/Openza.Reader.Avalonia.csproj -c Debug --no-restore
+dotnet test src/Openza.Reader.Tests/Openza.Reader.Tests.csproj -c Debug --no-restore
+dotnet run --project src/Openza.Reader.Avalonia/Openza.Reader.Avalonia.csproj -- README.md
+```
+
+The prototype supports opening and dropping Markdown files, Preview/Raw/Side-by-side modes, contents navigation, search, zoom, copy, focus mode, external editor launch, settings, recent files, and debounced reloads. Linux packaging and KDE validation are not complete yet.
+
 ## Development
 
 ```powershell
@@ -58,7 +84,7 @@ GitHub Releases record source snapshots and release notes. Microsoft Store remai
 
 ## Security Posture
 
-Markdown is rendered as untrusted content. Raw HTML is disabled, WebView2 host objects and web messages are disabled, app navigation is intercepted, and external links are launched through the Windows shell instead of inside the embedded WebView. Remote images can be blocked from Settings.
+Markdown is rendered as untrusted content. Raw HTML is disabled, generated documents use a restrictive content-security policy, app navigation is intercepted, and external links are launched through the operating-system shell instead of inside the embedded WebView. Remote images can be blocked from Settings.
 
 See [SECURITY.md](SECURITY.md) and [docs/security.md](docs/security.md) for reporting and implementation details.
 

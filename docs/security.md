@@ -7,8 +7,8 @@ Openza Reader renders local Markdown files that may come from downloads, reposit
 - Raw HTML parsing is disabled in Markdig.
 - Generated HTML is wrapped in an app-owned document shell.
 - Bundled scripts are limited to Prism-compatible code highlighting and small reader behavior.
-- WebView2 host objects are disabled.
-- WebView2 web messages are disabled.
+- The Windows app disables WebView2 host objects and web messages.
+- The Avalonia app does not register WebView host objects or message handlers.
 - JavaScript and script dialogs from document content are blocked by disabling raw HTML and by using a restrictive generated shell.
 - Navigation is intercepted:
   - `#heading` anchors stay inside the document.
@@ -16,7 +16,7 @@ Openza Reader renders local Markdown files that may come from downloads, reposit
   - `javascript:`, arbitrary `file:`, and unknown schemes are blocked.
 - Local images resolve relative to the opened Markdown file.
 - Remote images are controlled by the user setting and can be blocked for privacy.
-- If WebView2 Runtime is missing or broken, preview rendering cannot start. The app shows a user-facing error with the official WebView2 Runtime install/repair link instead of failing silently.
+- If the platform WebView runtime is missing or broken, preview rendering cannot start. Windows uses WebView2; the Ubuntu prototype uses the system WebKitGTK 4.1 runtime through Avalonia's official WebView package.
 
 ## Future HTML Compatibility
 
