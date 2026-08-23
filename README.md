@@ -2,14 +2,14 @@
 
 [![CI](https://github.com/openza/reader/actions/workflows/ci.yml/badge.svg)](https://github.com/openza/reader/actions/workflows/ci.yml)
 
-Openza Reader is a read-only Markdown reader. The released Windows app is built with WinUI 3, WebView2, and MSIX packaging. An Avalonia implementation is being evaluated for a first-class Linux experience while reusing the same portable rendering and security core.
+Openza Reader is a read-only Markdown reader. The current Store release uses WinUI 3 and WebView2. Its Avalonia replacement is being prepared for Windows and Linux with the same product behavior and portable rendering/security core, but without a browser-runtime dependency.
 
 > Status: Openza Reader is live on the Microsoft Store. Developers can also build and run it from source.
 
-| App | Status | UI and WebView |
+| App | Status | UI and renderer |
 | --- | --- | --- |
-| `Openza.Reader` | Released Windows app | WinUI 3 and WebView2 |
-| `Openza.Reader.Avalonia` | Linux prototype | Avalonia 12 and the official MIT-licensed Avalonia WebView |
+| `Openza.Reader` | Released Windows app | WinUI 3 and Microsoft WebView2 |
+| `Openza.Reader.Avalonia` | Windows replacement candidate and Linux prototype | Avalonia 12 and the fully managed MIT-licensed Avalonia.HtmlRenderer |
 
 User guide: [solanky.dev/openza/reader](https://solanky.dev/openza/reader/)
 
@@ -17,9 +17,9 @@ Install: [Microsoft Store](https://apps.microsoft.com/detail/9NNPMN0JSSW5?hl=en-
 
 Current Store release: `1.1.0`.
 
-Next planned Store update: `1.1.1`.
+Next planned Store update: `1.2.0`.
 
-## V1 Scope
+## Released Windows V1 Scope
 
 - Open Markdown files by double-click, drag and drop, or file picker
 - Render GitHub-style Markdown with Markdig
@@ -41,7 +41,7 @@ Next planned Store update: `1.1.1`.
 - .NET 10 SDK
 - Windows App SDK 2.0.x
 
-The development build is configured as Windows App SDK self-contained so `dotnet run` can launch without first registering a machine-wide Windows App Runtime. The app manifest and package minimum target Windows 10 22H2 (`10.0.19045.0`), and the app project produces self-contained `win-x64` build output for release validation.
+The current WinUI development build is Windows App SDK self-contained. The Avalonia replacement is also self-contained for Windows and uses the same Store identity, `App` application ID, package logos, minimum Windows version, and Markdown associations in its production MSIX. On first packaged launch it migrates the WinUI reader theme, default view, remote-image policy, document-stat preference, and recent-file list into its cross-platform settings store.
 
 You can install the required WinUI development workload with Microsoft's winget configuration:
 
@@ -51,11 +51,11 @@ winget configure -f https://aka.ms/winui-config
 
 ### Ubuntu prototype
 
-The Avalonia app currently requires the .NET 10 SDK and WebKitGTK 4.1. It has been exercised on Ubuntu 26.04 under GNOME/Wayland. The WebView uses Avalonia's documented WebKitGTK fallback because Ubuntu does not currently provide the WPE WebKit packages named by Avalonia's primary Linux backend documentation.
+The Avalonia prototype requires only the .NET 10 SDK on Ubuntu. Its preview is rendered by the fully managed, MIT-licensed Avalonia.HtmlRenderer control, so it does not require WebView2, WebKitGTK, WPE WebKit, or another browser runtime.
 
 ```bash
 sudo apt update
-sudo apt install dotnet-sdk-10.0 libwebkit2gtk-4.1-0
+sudo apt install dotnet-sdk-10.0
 ```
 
 Build, test, and run it with:
@@ -68,7 +68,7 @@ dotnet test src/Openza.Reader.Tests/Openza.Reader.Tests.csproj -c Debug --no-res
 dotnet run --project src/Openza.Reader.Avalonia/Openza.Reader.Avalonia.csproj -- README.md
 ```
 
-The prototype supports opening and dropping Markdown files, Preview/Raw/Side-by-side modes, contents navigation, search, zoom, copy, focus mode, external editor launch, settings, recent files, and debounced reloads. Linux packaging and KDE validation are not complete yet.
+The prototype supports opening and dropping Markdown files, Preview/Raw/Side-by-side modes, contents navigation, search, zoom, copy, focus mode, external editor launch, integrated settings/about/recent-file workspaces, and debounced reloads. Search is case-insensitive and uses a script-free managed highlighter in Preview and Side-by-side modes, with raw-text selection in Raw mode. Fenced code is rendered as styled code rather than Prism-highlighted tokens. Linux packaging and KDE validation are not complete yet.
 
 ## Development
 
@@ -78,13 +78,21 @@ dotnet test src/Openza.Reader.Tests/Openza.Reader.Tests.csproj -c Release --no-r
 dotnet build src/Openza.Reader/Openza.Reader.csproj -c Release --no-restore
 ```
 
-For Store packaging, open the solution in Visual Studio and use **Publish > Create App Packages** with the Microsoft Store flow. See [docs/store-submission.md](docs/store-submission.md) for release and Store maintenance notes.
+Build the Avalonia Windows candidate and its unsigned development MSIX with:
+
+```powershell
+dotnet restore src/Openza.Reader.Avalonia/Openza.Reader.Avalonia.csproj -r win-x64
+dotnet build src/Openza.Reader.Avalonia/Openza.Reader.Avalonia.csproj -c Release --no-restore
+.\eng\package-windows.ps1 -Architecture x64 -Version 1.2.0.0
+```
+
+Use `-Store` to create an unsigned package with the existing production Store identity for Partner Center. The default development package uses `Openza.OpenzaReader.Avalonia.Dev`, so local validation cannot replace the installed Store app. See [docs/store-submission.md](docs/store-submission.md) for the release and smoke-test workflow.
 
 GitHub Releases record source snapshots and release notes. Microsoft Store remains the trusted public install and update channel.
 
 ## Security Posture
 
-Markdown is rendered as untrusted content. Raw HTML is disabled, generated documents use a restrictive content-security policy, app navigation is intercepted, and external links are launched through the operating-system shell instead of inside the embedded WebView. Remote images can be blocked from Settings.
+Markdown is rendered as untrusted content and raw HTML is disabled in both apps. The released WinUI app uses an app-owned document shell with a restrictive content-security policy and WebView2 navigation interception. The Avalonia prototype passes Markdig-generated HTML directly to a managed renderer with no browser runtime or scripts; link clicks are intercepted so only in-document anchors stay inside while `http`, `https`, and `mailto` open externally. Remote images can be blocked from Settings.
 
 See [SECURITY.md](SECURITY.md) and [docs/security.md](docs/security.md) for reporting and implementation details.
 

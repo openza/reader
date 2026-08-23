@@ -1,0 +1,73 @@
+<UserControl
+    x:Class="Openza.Reader.Avalonia.Views.AboutView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    SizeChanged="OnSizeChanged">
+    <ScrollViewer x:Name="AboutScrollViewer" Padding="106,0,36,36">
+        <Grid x:Name="AboutContent" MaxWidth="1064" HorizontalAlignment="Left" RowDefinitions="Auto,Auto,Auto" RowSpacing="18">
+            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="20">
+                <Border
+                    Width="64"
+                    Height="64"
+                    Background="{DynamicResource ThemeControlLowBrush}"
+                    BorderBrush="{DynamicResource ThemeBorderLowBrush}"
+                    BorderThickness="1"
+                    CornerRadius="8">
+                    <Image Width="48" Height="48" Source="avares://Openza.Reader/Assets/reader.png" />
+                </Border>
+                <StackPanel Grid.Column="1" VerticalAlignment="Center" Spacing="3">
+                    <TextBlock x:Name="VersionText" Foreground="{DynamicResource ThemeForegroundLowBrush}" />
+                    <TextBlock Margin="0,4,0,0" Text="A focused, read-only Markdown reader." TextWrapping="Wrap" />
+                </StackPanel>
+            </Grid>
+
+            <Border
+                Grid.Row="1"
+                Padding="4"
+                Background="{DynamicResource ThemeControlLowBrush}"
+                BorderBrush="{DynamicResource ThemeBorderLowBrush}"
+                BorderThickness="1"
+                CornerRadius="8">
+                <Grid x:Name="LinksGrid" ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto" ColumnSpacing="4" RowSpacing="4">
+                    <Button x:Name="DocumentationButton" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Padding="12" Click="OnDocumentationClicked">
+                        <StackPanel Spacing="2">
+                            <TextBlock FontWeight="SemiBold" Text="Documentation" />
+                            <TextBlock FontSize="12" Foreground="{DynamicResource ThemeForegroundLowBrush}" Text="Read guides and release notes" />
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="SourceButton" Grid.Column="1" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Padding="12" Click="OnSourceClicked">
+                        <StackPanel Spacing="2">
+                            <TextBlock FontWeight="SemiBold" Text="Source repository" />
+                            <TextBlock FontSize="12" Foreground="{DynamicResource ThemeForegroundLowBrush}" Text="View the project on GitHub" />
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="IssuesButton" Grid.Row="1" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Padding="12" Click="OnIssuesClicked">
+                        <StackPanel Spacing="2">
+                            <TextBlock FontWeight="SemiBold" Text="Report an issue" />
+                            <TextBlock FontSize="12" Foreground="{DynamicResource ThemeForegroundLowBrush}" Text="Open bugs and feature requests" />
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="SecurityButton" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Padding="12" Click="OnSecurityClicked">
+                        <StackPanel Spacing="2">
+                            <TextBlock FontWeight="SemiBold" Text="Security policy" />
+                            <TextBlock FontSize="12" Foreground="{DynamicResource ThemeForegroundLowBrush}" Text="Report vulnerabilities responsibly" />
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="ThirdPartyNoticesButton" Grid.Row="2" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Padding="12" Click="OnThirdPartyNoticesClicked">
+                        <StackPanel Spacing="2">
+                            <TextBlock FontWeight="SemiBold" Text="Third-party notices" />
+                            <TextBlock FontSize="12" Foreground="{DynamicResource ThemeForegroundLowBrush}" Text="Licenses for bundled dependencies" />
+                        </StackPanel>
+                    </Button>
+                </Grid>
+            </Border>
+
+            <Border Grid.Row="2" Padding="12" Background="{DynamicResource ThemeControlLowBrush}" CornerRadius="6">
+                <TextBlock
+                    Foreground="{DynamicResource ThemeForegroundLowBrush}"
+                    Text="Openza Reader is licensed under the MIT License. Markdown files are treated as untrusted input; raw HTML remains disabled."
+                    TextWrapping="Wrap" />
+            </Border>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

@@ -2,90 +2,106 @@
     x:Class="Openza.Reader.Avalonia.MainWindow"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:html="clr-namespace:TheArtOfDev.HtmlRenderer.Avalonia;assembly=Avalonia.HtmlRenderer"
+    xmlns:views="clr-namespace:Openza.Reader.Avalonia.Views"
     Width="1180"
     Height="760"
     MinWidth="720"
     MinHeight="480"
     Title="Openza Reader"
-    Icon="avares://Openza.Reader.Avalonia/Assets/reader.png"
+    Icon="avares://Openza.Reader/Assets/reader.png"
+    WindowState="Maximized"
+    ExtendClientAreaToDecorationsHint="True"
+    ExtendClientAreaTitleBarHeightHint="40"
     DragDrop.AllowDrop="True"
     DragDrop.Drop="OnFilesDropped"
-    KeyDown="OnWindowKeyDown">
-    <Grid RowDefinitions="Auto,Auto,Auto,*,Auto">
-        <Border x:Name="HeaderBar" Grid.Row="0" Padding="16,10" BorderBrush="{DynamicResource ThemeBorderLowBrush}" BorderThickness="0,0,0,1">
-            <Grid ColumnDefinitions="Auto,*,Auto,Auto,Auto" ColumnSpacing="8">
-                <Image Width="28" Height="28" Source="avares://Openza.Reader.Avalonia/Assets/reader.png" />
+    KeyDown="OnWindowKeyDown"
+    SizeChanged="OnWindowSizeChanged">
+    <Grid RowDefinitions="40,Auto,Auto,*">
+        <Border
+            x:Name="HeaderBar"
+            Grid.Row="0"
+            Background="{DynamicResource ThemeControlLowBrush}"
+            BorderBrush="{DynamicResource ThemeBorderLowBrush}"
+            BorderThickness="0,0,0,1">
+            <Grid Margin="160,0" ColumnDefinitions="*,Auto" ColumnSpacing="10">
                 <TextBlock
                     x:Name="DocumentTitle"
-                    Grid.Column="1"
-                    Margin="8,0"
-                    VerticalAlignment="Center"
-                    FontWeight="SemiBold"
+                    IsVisible="False"
                     Text="Openza Reader"
+                    />
+                <TextBlock
+                    x:Name="DocumentStatsText"
+                    Grid.Column="1"
+                    MaxWidth="360"
+                    VerticalAlignment="Center"
+                    FontSize="12"
+                    Foreground="{DynamicResource ThemeForegroundLowBrush}"
                     TextTrimming="CharacterEllipsis" />
-                <Button Grid.Column="2" Click="OnOpenClicked" Content="Open" />
-                <Button Grid.Column="3" Click="OnSettingsClicked" Content="Settings" />
-                <Button Grid.Column="4" Click="OnAboutClicked" Content="About" />
             </Grid>
         </Border>
 
-        <Border x:Name="CommandBar" Grid.Row="1" Padding="16,8" BorderBrush="{DynamicResource ThemeBorderLowBrush}" BorderThickness="0,0,0,1">
+        <Border
+            x:Name="CommandBar"
+            Grid.Row="1"
+            Padding="12,8"
+            Background="{DynamicResource ThemeControlLowBrush}"
+            BorderBrush="{DynamicResource ThemeBorderLowBrush}"
+            BorderThickness="0,0,0,1">
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
-            <StackPanel Orientation="Horizontal" Spacing="8">
-                <Button Click="OnReloadClicked" Content="Reload" />
-                <ComboBox
-                    x:Name="ViewModePicker"
-                    Width="132"
-                    SelectionChanged="OnViewModeChanged">
-                    <ComboBoxItem Content="Preview" Tag="Preview" />
-                    <ComboBoxItem Content="Raw Markdown" Tag="Raw" />
-                    <ComboBoxItem Content="Side by side" Tag="SideBySide" />
-                </ComboBox>
-                <ToggleButton x:Name="TocToggle" Click="OnTocToggled" Content="Contents" />
-                <TextBox
-                    x:Name="FindTextBox"
-                    Width="170"
-                    PlaceholderText="Find in document"
-                    KeyDown="OnFindTextKeyDown" />
-                <Button Click="OnFindClicked" Content="Find" />
-                <Button Click="OnZoomOutClicked" Content="Zoom −" />
-                <Button Click="OnZoomInClicked" Content="Zoom +" />
-                <Button Click="OnCopyClicked" Content="Copy" />
-                <Button Click="OnOpenExternalClicked" Content="Editor" />
-                <ToggleButton x:Name="FocusToggle" Click="OnFocusClicked" Content="Focus" />
-            </StackPanel>
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Spacing="6">
+                    <Button Click="OnOpenClicked" Content="Open" ToolTip.Tip="Open Markdown file (Ctrl+O)" />
+                    <Button Click="OnRecentClicked" Content="Recent" ToolTip.Tip="Show recent files" />
+                    <Button Click="OnReloadClicked" Content="Reload" ToolTip.Tip="Reload current file" />
+                    <ComboBox x:Name="ViewModePicker" Width="126" SelectionChanged="OnViewModeChanged" ToolTip.Tip="Document view mode">
+                        <ComboBoxItem Content="Preview" Tag="Preview" />
+                        <ComboBoxItem Content="Raw Markdown" Tag="Raw" />
+                        <ComboBoxItem Content="Side by side" Tag="SideBySide" />
+                    </ComboBox>
+                    <ToggleButton x:Name="FocusToggle" Click="OnFocusClicked" Content="Focus" ToolTip.Tip="Toggle focus reading mode (F11)" />
+                    <TextBox x:Name="FindTextBox" Width="154" PlaceholderText="Find in document" KeyDown="OnFindTextKeyDown" />
+                    <Button Click="OnFindClicked" Content="Search" ToolTip.Tip="Find next match (Ctrl+F)" />
+                    <ToggleButton x:Name="TocToggle" Click="OnTocToggled" Content="Contents" ToolTip.Tip="Show or hide contents" />
+                    <Button Click="OnZoomOutClicked" Content="Zoom −" ToolTip.Tip="Zoom out" />
+                    <Button Click="OnZoomInClicked" Content="Zoom +" ToolTip.Tip="Zoom in" />
+                    <Button Click="OnCopyClicked" Content="Copy" ToolTip.Tip="Copy selected text" />
+                    <Button Click="OnOpenExternalClicked" Content="Editor" ToolTip.Tip="Open with an installed editor" />
+                    <Button Click="OnSettingsClicked" Content="Settings" ToolTip.Tip="Open settings" />
+                    <Button Click="OnAboutClicked" Content="About" ToolTip.Tip="About Openza Reader" />
+                </StackPanel>
             </ScrollViewer>
         </Border>
 
         <Border
             x:Name="MessageBar"
             Grid.Row="2"
-            Margin="16,10,16,0"
+            Margin="16,8,16,0"
             Padding="12,8"
             Background="{DynamicResource SystemControlBackgroundAccentBrush}"
             CornerRadius="6"
             IsVisible="False">
-            <TextBlock x:Name="MessageText" TextWrapping="Wrap" />
+            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                <TextBlock x:Name="MessageText" VerticalAlignment="Center" TextWrapping="Wrap" />
+                <Button Grid.Column="1" Padding="8,2" Click="OnDismissMessageClicked" Content="Close" />
+            </Grid>
         </Border>
 
-        <Grid Grid.Row="3" Margin="0,10,0,0" ColumnDefinitions="Auto,*">
+        <Grid x:Name="ContentRoot" Grid.Row="3" Margin="0,8,0,0" ColumnDefinitions="Auto,*">
             <Border
                 x:Name="TocPane"
                 Grid.Column="0"
-                Width="260"
-                Padding="16,8"
+                Width="300"
+                Padding="8,8,8,12"
+                Background="{DynamicResource ThemeControlLowBrush}"
                 BorderBrush="{DynamicResource ThemeBorderLowBrush}"
                 BorderThickness="0,0,1,0"
                 IsVisible="False">
-                <Grid RowDefinitions="Auto,*" RowSpacing="8">
-                    <TextBlock FontSize="16" FontWeight="SemiBold" Text="Contents" />
+                <Grid RowDefinitions="Auto,*" RowSpacing="6">
+                    <TextBlock Margin="8,6,8,8" FontWeight="SemiBold" Text="Contents" />
                     <ListBox x:Name="TocList" Grid.Row="1" SelectionChanged="OnTocSelectionChanged">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock
-                                    Margin="{Binding Margin}"
-                                    Text="{Binding Title}"
-                                    TextTrimming="CharacterEllipsis" />
+                                <TextBlock Margin="{Binding Margin}" Text="{Binding Title}" TextTrimming="CharacterEllipsis" />
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
@@ -104,38 +120,17 @@
                         IsReadOnly="True"
                         TextWrapping="NoWrap" />
                     <GridSplitter x:Name="DocumentSplitter" Grid.Column="1" Width="5" ResizeDirection="Columns" />
-                    <NativeWebView
-                        x:Name="ReaderWebView"
+                    <html:HtmlPanel
+                        x:Name="ReaderHtml"
                         Grid.Column="2"
-                        EnvironmentRequested="OnWebViewEnvironmentRequested"
-                        NavigationCompleted="OnWebViewNavigationCompleted"
-                        NavigationStarted="OnWebViewNavigationStarted"
-                        NewWindowRequested="OnWebViewNewWindowRequested" />
+                        Padding="24"
+                        AvoidImagesLateLoading="False"
+                        Focusable="True"
+                        IsContextMenuEnabled="True"
+                        IsSelectionEnabled="True" />
                 </Grid>
 
-                <Grid x:Name="EmptyState" Margin="48" RowDefinitions="*,Auto,Auto,Auto,*" RowSpacing="12">
-                    <Image
-                        Grid.Row="1"
-                        Width="72"
-                        Height="72"
-                        HorizontalAlignment="Center"
-                        Source="avares://Openza.Reader.Avalonia/Assets/reader.png" />
-                    <TextBlock
-                        Grid.Row="2"
-                        HorizontalAlignment="Center"
-                        FontSize="28"
-                        FontWeight="SemiBold"
-                        Text="Openza Reader" />
-                    <StackPanel Grid.Row="3" HorizontalAlignment="Center" Spacing="12">
-                        <TextBlock Foreground="{DynamicResource ThemeForegroundLowBrush}" Text="Open a Markdown file to start reading." />
-                        <Button HorizontalAlignment="Center" Click="OnOpenClicked" Content="Open Markdown file" />
-                        <ListBox
-                            x:Name="RecentFilesList"
-                            MinWidth="420"
-                            MaxHeight="220"
-                            DoubleTapped="OnRecentFileActivated" />
-                    </StackPanel>
-                </Grid>
+                <views:ReaderEmptyView x:Name="EmptyState" />
 
                 <Button
                     x:Name="FocusExitButton"
@@ -145,14 +140,22 @@
                     Click="OnExitFocusClicked"
                     Content="Exit focus"
                     IsVisible="False" />
+
+                <Grid x:Name="PageWorkspace" Background="{DynamicResource ThemeControlLowBrush}" IsVisible="False" RowDefinitions="Auto,*">
+                    <Grid Margin="36,20,36,12" ColumnDefinitions="52,*" ColumnSpacing="18">
+                        <Button Width="40" Height="36" HorizontalAlignment="Left" VerticalAlignment="Top" Click="OnCloseWorkspaceClicked" Content="←" ToolTip.Tip="Back to reader" />
+                        <StackPanel Grid.Column="1" Spacing="2">
+                            <TextBlock x:Name="PageWorkspaceTitle" FontSize="28" FontWeight="SemiBold" />
+                            <TextBlock x:Name="PageWorkspaceSubtitle" Foreground="{DynamicResource ThemeForegroundLowBrush}" TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Grid>
+                    <ContentControl
+                        x:Name="PageWorkspaceContent"
+                        Grid.Row="1"
+                        HorizontalContentAlignment="Stretch"
+                        VerticalContentAlignment="Stretch" />
+                </Grid>
             </Grid>
         </Grid>
-
-        <Border x:Name="StatusBar" Grid.Row="4" Padding="16,8" BorderBrush="{DynamicResource ThemeBorderLowBrush}" BorderThickness="0,1,0,0">
-            <Grid ColumnDefinitions="*,Auto">
-                <TextBlock x:Name="FilePathText" Foreground="{DynamicResource ThemeForegroundLowBrush}" TextTrimming="CharacterEllipsis" />
-                <TextBlock x:Name="DocumentStatsText" Grid.Column="1" Margin="20,0,0,0" />
-            </Grid>
-        </Border>
     </Grid>
 </Window>

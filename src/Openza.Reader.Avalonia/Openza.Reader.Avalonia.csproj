@@ -1,16 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net10.0</TargetFramework>
+    <TargetFramework Condition="$([MSBuild]::IsOSPlatform('Windows'))">net10.0-windows10.0.19041.0</TargetFramework>
+    <TargetFramework Condition="!$([MSBuild]::IsOSPlatform('Windows'))">net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <AvaloniaUseCompiledBindingsByDefault>false</AvaloniaUseCompiledBindingsByDefault>
     <RootNamespace>Openza.Reader.Avalonia</RootNamespace>
+    <AssemblyName>Openza.Reader</AssemblyName>
+    <Product>Openza Reader</Product>
+    <Version>1.2.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="12.1.0" />
-    <PackageReference Include="Avalonia.Controls.WebView" Version="12.0.1" />
+    <PackageReference Include="Avalonia.HtmlRenderer" Version="12.0.0" />
     <PackageReference Include="Avalonia.Desktop" Version="12.1.0" />
     <PackageReference Include="Avalonia.Fonts.Inter" Version="12.1.0" />
     <PackageReference Include="Avalonia.Themes.Fluent" Version="12.1.0" />
@@ -22,8 +26,5 @@
 
   <ItemGroup>
     <AvaloniaResource Include="..\Openza.Reader\Assets\Square44x44Logo.targetsize-256_altform-unplated.png" Link="Assets\reader.png" />
-    <Content Include="..\Openza.Reader\Assets\reader.css" Link="Assets\reader.css" CopyToOutputDirectory="PreserveNewest" />
-    <Content Include="..\Openza.Reader\Assets\prism.css" Link="Assets\prism.css" CopyToOutputDirectory="PreserveNewest" />
-    <Content Include="..\Openza.Reader\Assets\prism.js" Link="Assets\prism.js" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 </Project>

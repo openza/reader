@@ -10,10 +10,9 @@ Openza Reader `1.1.0` is the current Microsoft Store release.
 
 ## Planned Next Release
 
-Openza Reader `1.1.1` is the next planned Microsoft Store update.
+Openza Reader `1.2.0` is the next planned Microsoft Store update and replaces the WinUI application with the Avalonia implementation while preserving the Store identity and user-facing behavior.
 
-- Release tracking: https://github.com/openza/reader/milestone/5
-- Release notes draft: [release-notes/v1.1.1.md](release-notes/v1.1.1.md)
+- Release workflow and notes draft: [store-submission.md](store-submission.md)
 
 ## V1 Release Bar
 
@@ -47,9 +46,9 @@ Microsoft Store remains the trusted public install and update channel.
 
 - Supported OS target: Windows 10 22H2 (`10.0.19045.0`) or later, and Windows 11.
 - V1 architecture: x64.
-- The app project is configured for Windows App SDK self-contained deployment and .NET self-contained build output for `win-x64`.
-- The 2026-05-23 Release x64 build output used `includedFrameworks` for `Microsoft.NETCore.App` in `Openza.Reader.runtimeconfig.json` and was about 217 MiB before MSIX packaging.
-- Openza Reader uses WebView2. Windows 11 normally includes the runtime; if WebView2 is absent or broken, the app surfaces a WebView2 Runtime install/repair link.
+- The released `1.1.0` app uses WinUI 3 and WebView2. Windows 11 normally includes the WebView2 runtime; the released app surfaces an install/repair link if it is absent or broken.
+- The planned `1.2.0` replacement is a self-contained Avalonia `win-x64` MSIX with a fully managed HTML renderer and no WebView2 runtime dependency.
+- The production package keeps identity `Openza.OpenzaReader`, application ID `App`, Markdown file associations, settings migration, and Store update continuity.
 
 ## Out Of Scope
 

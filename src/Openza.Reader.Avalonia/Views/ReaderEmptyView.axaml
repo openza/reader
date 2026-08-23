@@ -1,0 +1,62 @@
+<UserControl
+    x:Class="Openza.Reader.Avalonia.Views.ReaderEmptyView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    SizeChanged="OnSizeChanged">
+    <Border Padding="48,40">
+    <Grid x:Name="LayoutRoot" ColumnDefinitions="320,*" RowDefinitions="*,0" ColumnSpacing="32" RowSpacing="24">
+        <StackPanel x:Name="IdentityPanel" MaxWidth="320" Margin="0,72,0,0" Spacing="12">
+            <TextBlock FontSize="28" FontWeight="SemiBold" Text="Openza Reader" />
+            <TextBlock
+                Foreground="{DynamicResource ThemeForegroundLowBrush}"
+                Text="Open a Markdown file to start reading, or continue from a recent document."
+                TextWrapping="Wrap" />
+            <Button HorizontalAlignment="Left" Click="OnOpenFileClicked" Content="Open file" />
+        </StackPanel>
+
+        <Border
+            x:Name="RecentCard"
+            Grid.Column="1"
+            Padding="20"
+            Background="{DynamicResource ThemeControlLowBrush}"
+            BorderBrush="{DynamicResource ThemeBorderLowBrush}"
+            BorderThickness="1"
+            CornerRadius="8">
+            <Grid RowDefinitions="Auto,*" RowSpacing="12">
+                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="16">
+                    <StackPanel Spacing="2">
+                        <TextBlock FontWeight="SemiBold" Text="Recent files" />
+                        <TextBlock
+                            x:Name="RecentFilesHintText"
+                            FontSize="12"
+                            Foreground="{DynamicResource ThemeForegroundLowBrush}"
+                            Text="Pick up where you left off." />
+                    </StackPanel>
+                    <Button x:Name="ClearButton" Grid.Column="1" Click="OnClearClicked" Content="Clear" />
+                </Grid>
+
+                <Grid Grid.Row="1">
+                    <ListBox x:Name="RecentFilesList" SelectionChanged="OnRecentFileSelected">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="4,6" Spacing="2">
+                                    <TextBlock FontWeight="SemiBold" Text="{Binding Name}" />
+                                    <TextBlock
+                                        FontSize="12"
+                                        Foreground="{DynamicResource ThemeForegroundLowBrush}"
+                                        Text="{Binding Directory}"
+                                        TextTrimming="CharacterEllipsis" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <StackPanel x:Name="NoRecentFiles" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="4">
+                        <TextBlock HorizontalAlignment="Center" FontWeight="SemiBold" Text="No recent files" />
+                        <TextBlock Foreground="{DynamicResource ThemeForegroundLowBrush}" Text="Opened Markdown files will appear here." />
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+    </Border>
+</UserControl>

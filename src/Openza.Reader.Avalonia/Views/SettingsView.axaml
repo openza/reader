@@ -1,0 +1,80 @@
+<UserControl
+    x:Class="Openza.Reader.Avalonia.Views.SettingsView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    SizeChanged="OnSizeChanged">
+    <ScrollViewer x:Name="SettingsScrollViewer" Padding="106,0,36,36">
+        <StackPanel x:Name="SettingsContent" MaxWidth="1064" HorizontalAlignment="Left" Spacing="4">
+            <TextBlock Margin="1,28,0,6" FontWeight="SemiBold" Text="Reading" />
+
+            <Border Padding="18" Background="{DynamicResource ThemeControlLowBrush}" BorderBrush="{DynamicResource ThemeBorderLowBrush}" BorderThickness="1" CornerRadius="6">
+                <Grid x:Name="DefaultViewRow" ColumnDefinitions="44,*,240" RowDefinitions="Auto,Auto" ColumnSpacing="16">
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Text="▤" />
+                    <StackPanel Grid.Column="1" Spacing="2">
+                        <TextBlock FontWeight="SemiBold" Text="Default view" />
+                        <TextBlock Foreground="{DynamicResource ThemeForegroundLowBrush}" Text="Choose the view used when a file opens." TextWrapping="Wrap" />
+                    </StackPanel>
+                    <ComboBox x:Name="DefaultViewPicker" Grid.Column="2" SelectionChanged="OnSettingChanged">
+                        <ComboBoxItem Content="Preview" Tag="Preview" />
+                        <ComboBoxItem Content="Raw" Tag="Raw" />
+                        <ComboBoxItem Content="Side by side" Tag="SideBySide" />
+                    </ComboBox>
+                </Grid>
+            </Border>
+
+            <Border Padding="18" Background="{DynamicResource ThemeControlLowBrush}" BorderBrush="{DynamicResource ThemeBorderLowBrush}" BorderThickness="1" CornerRadius="6">
+                <Grid x:Name="ThemeRow" ColumnDefinitions="44,*,240" RowDefinitions="Auto,Auto" ColumnSpacing="16">
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Text="◐" />
+                    <StackPanel Grid.Column="1" Spacing="2">
+                        <TextBlock FontWeight="SemiBold" Text="Reader theme" />
+                        <TextBlock Foreground="{DynamicResource ThemeForegroundLowBrush}" Text="Affects rendered Markdown; system accessibility settings still win." TextWrapping="Wrap" />
+                    </StackPanel>
+                    <ComboBox x:Name="ThemePicker" Grid.Column="2" SelectionChanged="OnSettingChanged">
+                        <ComboBoxItem Content="System" Tag="System" />
+                        <ComboBoxItem Content="Light" Tag="Light" />
+                        <ComboBoxItem Content="Dark" Tag="Dark" />
+                        <ComboBoxItem Content="Sepia" Tag="Sepia" />
+                    </ComboBox>
+                </Grid>
+            </Border>
+
+            <Border Padding="18" Background="{DynamicResource ThemeControlLowBrush}" BorderBrush="{DynamicResource ThemeBorderLowBrush}" BorderThickness="1" CornerRadius="6">
+                <Grid x:Name="RemoteImagesRow" ColumnDefinitions="44,*,240" RowDefinitions="Auto,Auto" ColumnSpacing="16">
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Text="◉" />
+                    <StackPanel Grid.Column="1" Spacing="2">
+                        <TextBlock FontWeight="SemiBold" Text="Remote images" />
+                        <TextBlock Foreground="{DynamicResource ThemeForegroundLowBrush}" Text="Block remote images for privacy, or allow them for README compatibility." TextWrapping="Wrap" />
+                    </StackPanel>
+                    <ComboBox x:Name="RemoteImagesPicker" Grid.Column="2" SelectionChanged="OnSettingChanged">
+                        <ComboBoxItem Content="Allow" Tag="Allow" />
+                        <ComboBoxItem Content="Block" Tag="Block" />
+                    </ComboBox>
+                </Grid>
+            </Border>
+
+            <Border Padding="18" Background="{DynamicResource ThemeControlLowBrush}" BorderBrush="{DynamicResource ThemeBorderLowBrush}" BorderThickness="1" CornerRadius="6">
+                <Grid x:Name="StatsRow" ColumnDefinitions="44,*,240" RowDefinitions="Auto,Auto" ColumnSpacing="16">
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Text="≡" />
+                    <StackPanel Grid.Column="1" Spacing="2">
+                        <TextBlock FontWeight="SemiBold" Text="Document stats" />
+                        <TextBlock Foreground="{DynamicResource ThemeForegroundLowBrush}" Text="Show word count, estimated read time, and heading count in the title area." TextWrapping="Wrap" />
+                    </StackPanel>
+                    <CheckBox x:Name="DocumentStatsCheckBox" Grid.Column="2" IsCheckedChanged="OnSettingChanged" Content="Show document stats" />
+                </Grid>
+            </Border>
+
+            <TextBlock Margin="1,28,0,6" FontWeight="SemiBold" Text="Local data" />
+
+            <Border Padding="18" Background="{DynamicResource ThemeControlLowBrush}" BorderBrush="{DynamicResource ThemeBorderLowBrush}" BorderThickness="1" CornerRadius="6">
+                <Grid x:Name="RecentFilesRow" ColumnDefinitions="44,*,Auto" RowDefinitions="Auto,Auto" ColumnSpacing="16">
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Text="◷" />
+                    <StackPanel Grid.Column="1" Spacing="2">
+                        <TextBlock x:Name="RecentFilesCountText" FontWeight="SemiBold" Text="No recent files" />
+                        <TextBlock Foreground="{DynamicResource ThemeForegroundLowBrush}" Text="Recent files stay local to this device." TextWrapping="Wrap" />
+                    </StackPanel>
+                    <Button x:Name="ClearRecentFilesButton" Grid.Column="2" Click="OnClearRecentFilesClicked" Content="Clear" />
+                </Grid>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

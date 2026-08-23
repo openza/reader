@@ -14,9 +14,7 @@ Openza Reader depends on third-party packages and platform components. This file
 | Avalonia.Desktop | 12.1.0 | MIT | Desktop platform backends |
 | Avalonia.Fonts.Inter | 12.1.0 | MIT | Bundled application font support |
 | Avalonia.Themes.Fluent | 12.1.0 | MIT | Fluent control theme |
-| Avalonia.Controls.WebView | 12.0.1 | MIT | Native embedded WebView abstraction |
-
-On Linux, the prototype uses the operating system's WebKitGTK runtime; WebKitGTK is not bundled in this repository.
+| Avalonia.HtmlRenderer | 12.0.0 | MIT | Fully managed HTML rendering for the Avalonia prototype |
 
 ## Test Dependencies
 
