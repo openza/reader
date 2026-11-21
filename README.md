@@ -6,7 +6,7 @@ Openza Reader is a native Markdown reader for Windows, built with WinUI 3, WebVi
 
 > Status: Openza Reader is live on the Microsoft Store. Developers can also build and run it from source.
 
-User guide: [solanky.dev/openza/reader](https://solanky.dev/openza/reader/)
+User guide: [openza.org/reader](https://openza.org/reader/)
 
 Install: [Microsoft Store](https://apps.microsoft.com/detail/9NNPMN0JSSW5?hl=en-us&gl=IN)
 
