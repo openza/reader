@@ -15,7 +15,7 @@ Openza Reader is publicly available through the Microsoft Store. Security fixes 
 
 Please do not open a public issue for a suspected vulnerability.
 
-Use **Report a vulnerability** on the repository's Security page to open a private report. If private vulnerability reporting is unavailable, contact the maintainers through the Openza project owner account and include:
+Use **Report a vulnerability** on the repository's Security page to open a private report. If private vulnerability reporting is unavailable, email [hello@openza.org](mailto:hello@openza.org) and include:
 
 - A clear description of the issue
 - Steps to reproduce
