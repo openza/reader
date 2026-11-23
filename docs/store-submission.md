@@ -71,7 +71,7 @@ https://github.com/openza/reader/blob/main/PRIVACY.md
 Website:
 
 ```text
-https://solanky.dev/openza/reader/
+https://openza.org/reader/
 ```
 
 Category:
